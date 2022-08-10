@@ -4,17 +4,17 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Alumno } from '../lista-alumnos/lista-alumnos.component';
 
 @Component({
-  selector: 'app-abm-alumno',
-  templateUrl: './abm-alumno.component.html',
-  styleUrls: ['./abm-alumno.component.css']
+  selector: 'app-modificar-alumno',
+  templateUrl: './modificar-alumno.component.html',
+  styleUrls: ['./modificar-alumno.component.css']
 })
-export class AbmAlumnoComponent implements OnInit {
+export class ModificarAlumnoComponent implements OnInit {
 
   formulario: FormGroup
 
   constructor(
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<AbmAlumnoComponent>,
+    private dialogRef: MatDialogRef<ModificarAlumnoComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Alumno
   ) {
     this.formulario = fb.group({

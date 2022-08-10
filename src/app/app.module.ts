@@ -6,8 +6,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppMaterialModule } from './app.material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { ModificarAlumnoComponent, FooterComponent, ListaAlumnosComponent, NavBarComponent, ToolbarComponent } from './components';
 import { DniPipe, NombreApellidoAlumnoPipe } from './pipes';
-import { AbmAlumnoComponent, FooterComponent, ListaAlumnosComponent, NavBarComponent, ToolbarComponent } from './components';
+import { TitleFontSizeDirective } from './directives';
+import { BorrarAlumnoComponent } from './components/borrar-alumno/borrar-alumno.component';
+import { NuevoAlumnoComponent } from './components/nuevo-alumno/nuevo-alumno.component';
 
 @NgModule({
   declarations: [
@@ -16,9 +19,13 @@ import { AbmAlumnoComponent, FooterComponent, ListaAlumnosComponent, NavBarCompo
     ToolbarComponent,
     ListaAlumnosComponent,
     FooterComponent,
-    AbmAlumnoComponent,
+    ModificarAlumnoComponent,
     NombreApellidoAlumnoPipe,
-    DniPipe
+    DniPipe,
+    TitleFontSizeDirective,
+    ModificarAlumnoComponent,
+    BorrarAlumnoComponent,
+    NuevoAlumnoComponent
   ],
   imports: [
     BrowserModule,

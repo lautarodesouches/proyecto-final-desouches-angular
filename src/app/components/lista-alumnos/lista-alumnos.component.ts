@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { AbmAlumnoComponent } from '../abm-alumno/abm-alumno.component';
+import { BorrarAlumnoComponent } from '../borrar-alumno/borrar-alumno.component';
+import { ModificarAlumnoComponent } from '../modificar-alumno/modificar-alumno.component';
+import { NuevoAlumnoComponent } from '../nuevo-alumno/nuevo-alumno.component';
 
 export interface Alumno {
   id: number
@@ -47,9 +49,8 @@ export class ListaAlumnosComponent implements OnInit {
   }
 
   editar(elemento: Alumno) {
-    const dialogRef = this.dialog.open(AbmAlumnoComponent, {
+    const dialogRef = this.dialog.open(ModificarAlumnoComponent, {
       width: '50%',
-      minHeight: '60%',
       data: elemento
     })
 
@@ -64,12 +65,33 @@ export class ListaAlumnosComponent implements OnInit {
   }
 
   eliminar(idAlumno: number) {
-    this.dataSource.data = this.dataSource.data.filter((alumno: Alumno) => alumno.id !== idAlumno)
+    const dialogRef = this.dialog.open(BorrarAlumnoComponent, {
+      width: '20%'
+    })
+
+    dialogRef.afterClosed().subscribe(resultado => {
+      if (resultado) {
+        this.dataSource.data = this.dataSource.data.filter((alumno: Alumno) => alumno.id !== idAlumno)
+      }
+    })
   }
 
   filtrar(event: Event) {
     const valorObtenido = (event.target as HTMLInputElement).value
     this.dataSource.filter = valorObtenido.trim().toLocaleLowerCase()
+  }
+
+  nuevoAlumno() {
+    const dialogRef = this.dialog.open(NuevoAlumnoComponent, {
+      width: '50%'
+    })
+
+    dialogRef.afterClosed().subscribe(resultado => {
+      if (resultado) {
+        this.dataSource.data.push({ ...resultado, id: this.dataSource.data.length + 1 })
+        this.listaAlumnos.renderRows()
+      }
+    })
   }
 
 }

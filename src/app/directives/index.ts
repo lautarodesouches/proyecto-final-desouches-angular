@@ -1,0 +1,1 @@
+export { TitleFontSizeDirective } from './title-font-size/title-font-size.directive'

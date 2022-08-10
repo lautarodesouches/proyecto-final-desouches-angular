@@ -1,5 +1,5 @@
 export { NavBarComponent } from './nav-bar/nav-bar.component'
 export { ToolbarComponent } from './toolbar/toolbar.component'
-export { AbmAlumnoComponent } from './abm-alumno/abm-alumno.component'
+export { ModificarAlumnoComponent } from './modificar-alumno/modificar-alumno.component'
 export { ListaAlumnosComponent } from './lista-alumnos/lista-alumnos.component'
 export { FooterComponent } from './footer/footer.component'
