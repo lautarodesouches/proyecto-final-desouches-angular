@@ -1,1 +1,53 @@
-<p>lista-alumnos works!</p>
+<table mat-table [dataSource]="dataSource" class='border'>
+
+    <ng-container matColumnDef="nombre">
+        <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td class='px-4' mat-cell *matCellDef="let element">{{element.nombre}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="apellido">
+        <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Apellido</th>
+        <td class='px-4' mat-cell *matCellDef="let element">{{element.apellido}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+        <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Email</th>
+        <td class='px-4' mat-cell *matCellDef="let element">{{element.email}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="telefono">
+        <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Telefono</th>
+        <td class='px-4' mat-cell *matCellDef="let element">{{element.telefono}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="dni">
+        <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Dni</th>
+        <td class='px-4' mat-cell *matCellDef="let element">{{element.dni}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="pais">
+        <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Pais</th>
+        <td class='px-4' mat-cell *matCellDef="let element">{{element.pais}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="activo">
+        <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Activo</th>
+        <td class='px-4' mat-cell *matCellDef="let element">{{element.activo ? 'Si' : 'No'}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="acciones">
+        <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td class='px-4' mat-cell *matCellDef="let element">
+            <button mat-icon-button (click)="editar(element.id)">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="eliminar(element.id)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+    
+</table>

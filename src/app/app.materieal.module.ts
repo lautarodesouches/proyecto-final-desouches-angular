@@ -8,7 +8,7 @@ import { MatButtonModule } from '@angular/material/button'
     exports: [
         MatTableModule,
         MatIconModule,
-        MatButtonModule
+        MatButtonModule,
     ]
 })
 
