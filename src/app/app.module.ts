@@ -7,6 +7,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ListaAlumnosComponent } from './components/lista-alumnos/lista-alumnos.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { AppMaterialModule } from './app.materieal.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FooterComponent } from './components/footer/footer.component';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AppMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

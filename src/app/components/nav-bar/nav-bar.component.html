@@ -1,7 +1,9 @@
 <nav class='d-flex align-items-center h-100'>
     <ul class='list-unstyled'>
-        <li>Uno</li>
-        <li>Dos</li>
-        <li>Tres</li>
+        <div *ngFor="let item of navItems" class='py-1 h5'>
+            <a class='text-white text-decoration-none cursor-pointer'>
+                <li>{{item | titlecase}}</li>
+            </a>
+        </div>
     </ul>
 </nav>
