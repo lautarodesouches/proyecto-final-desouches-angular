@@ -4,14 +4,9 @@
 </mat-form-field>
 <table mat-table [dataSource]="dataSource" class='border'>
 
-    <ng-container matColumnDef="nombre">
-        <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Nombre</th>
-        <td class='px-4' mat-cell *matCellDef="let element">{{element.nombre}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="apellido">
-        <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Apellido</th>
-        <td class='px-4' mat-cell *matCellDef="let element">{{element.apellido}}</td>
+    <ng-container matColumnDef="nombreCompleto">
+        <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Nombre completo</th>
+        <td class='px-4' mat-cell *matCellDef="let element">{{element | nombreApellidoAlumno}}</td>
     </ng-container>
 
     <ng-container matColumnDef="email">
@@ -26,7 +21,7 @@
 
     <ng-container matColumnDef="dni">
         <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Dni</th>
-        <td class='px-4' mat-cell *matCellDef="let element">{{element.dni}}</td>
+        <td class='px-4' mat-cell *matCellDef="let element">{{element.dni | dni}}</td>
     </ng-container>
 
     <ng-container matColumnDef="pais">
@@ -53,5 +48,5 @@
 
     <tr mat-header-row *matHeaderRowDef="columnas"></tr>
     <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
-    
+
 </table>

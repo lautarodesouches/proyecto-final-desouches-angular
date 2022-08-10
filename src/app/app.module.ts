@@ -3,13 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavBarComponent } from './components/nav-bar/nav-bar.component';
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
-import { ListaAlumnosComponent } from './components/lista-alumnos/lista-alumnos.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { AppMaterialModule } from './app.materieal.module';
-import { AbmAlumnoComponent } from './components/abm-alumno/abm-alumno.component';
+import { AppMaterialModule } from './app.material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+
+import { DniPipe, NombreApellidoAlumnoPipe } from './pipes';
+import { AbmAlumnoComponent, FooterComponent, ListaAlumnosComponent, NavBarComponent, ToolbarComponent } from './components';
 
 @NgModule({
   declarations: [
@@ -18,7 +16,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     ToolbarComponent,
     ListaAlumnosComponent,
     FooterComponent,
-    AbmAlumnoComponent
+    AbmAlumnoComponent,
+    NombreApellidoAlumnoPipe,
+    DniPipe
   ],
   imports: [
     BrowserModule,

@@ -34,7 +34,7 @@ const ELEMENT_DATA: Alumno[] = [
 })
 export class ListaAlumnosComponent implements OnInit {
 
-  columnas: string[] = ['nombre', 'apellido', 'email', 'telefono', 'dni', 'pais', 'activo', 'acciones']
+  columnas: string[] = ['nombreCompleto', 'email', 'telefono', 'dni', 'pais', 'activo', 'acciones']
 
   dataSource: MatTableDataSource<Alumno> = new MatTableDataSource(ELEMENT_DATA)
 
