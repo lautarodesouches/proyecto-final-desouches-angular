@@ -8,6 +8,8 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ListaAlumnosComponent } from './components/lista-alumnos/lista-alumnos.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AppMaterialModule } from './app.materieal.module';
+import { AbmAlumnoComponent } from './components/abm-alumno/abm-alumno.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,12 +17,14 @@ import { AppMaterialModule } from './app.materieal.module';
     NavBarComponent,
     ToolbarComponent,
     ListaAlumnosComponent,
-    FooterComponent
+    FooterComponent,
+    AbmAlumnoComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppMaterialModule
+    AppMaterialModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

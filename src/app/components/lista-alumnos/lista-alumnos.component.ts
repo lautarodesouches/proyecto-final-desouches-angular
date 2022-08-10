@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { AbmAlumnoComponent } from '../abm-alumno/abm-alumno.component';
 
 export interface Alumno {
   id: number
@@ -36,16 +38,38 @@ export class ListaAlumnosComponent implements OnInit {
 
   dataSource: MatTableDataSource<Alumno> = new MatTableDataSource(ELEMENT_DATA)
 
-  constructor() { }
+  @ViewChild(MatTable) listaAlumnos!: MatTable<Alumno>
+
+  constructor(private dialog: MatDialog) {
+  }
 
   ngOnInit(): void {
   }
 
-  editar(element: Alumno) {
+  editar(elemento: Alumno) {
+    const dialogRef = this.dialog.open(AbmAlumnoComponent, {
+      width: '50%',
+      minHeight: '60%',
+      data: elemento
+    })
+
+    dialogRef.afterClosed().subscribe(resultado => {
+      if (resultado) {
+        const item = this.dataSource.data.find(alumno => alumno.id === resultado.id)
+        const index = this.dataSource.data.indexOf(item!)
+        this.dataSource.data[index] = resultado
+        this.listaAlumnos.renderRows()
+      }
+    })
   }
 
-  eliminar(id: number) {
-    this.dataSource.data = this.dataSource.data.filter((alumno: Alumno) => alumno.id !== id)
+  eliminar(idAlumno: number) {
+    this.dataSource.data = this.dataSource.data.filter((alumno: Alumno) => alumno.id !== idAlumno)
+  }
+
+  filtrar(event: Event) {
+    const valorObtenido = (event.target as HTMLInputElement).value
+    this.dataSource.filter = valorObtenido.trim().toLocaleLowerCase()
   }
 
 }
