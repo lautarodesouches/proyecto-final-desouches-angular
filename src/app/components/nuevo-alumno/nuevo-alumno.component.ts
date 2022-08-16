@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -10,21 +10,28 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class NuevoAlumnoComponent implements OnInit {
 
   formulario: FormGroup
+  formFields: string[]
 
   constructor(
+
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<NuevoAlumnoComponent>,
+    private dialogRef: MatDialogRef<NuevoAlumnoComponent>
+
   ) {
+
     this.formulario = fb.group({
-      id: new FormControl(),
-      nombre: new FormControl(),
-      apellido: new FormControl(),
-      email: new FormControl(),
-      telefono: new FormControl(),
-      dni: new FormControl(),
-      pais: new FormControl(),
-      activo: new FormControl(),
+      id: new FormControl('', []),
+      nombre: new FormControl('', [Validators.required]),
+      apellido: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      telefono: new FormControl('', [Validators.required]),
+      dni: new FormControl('', [Validators.required]),
+      pais: new FormControl('', [Validators.required, Validators.maxLength(2)]),
+      activo: new FormControl('', []),
     })
+
+    this.formFields = ['nombre', 'apellido', 'email', 'telefono', 'dni', 'pais']
+
   }
 
   ngOnInit(): void {
@@ -34,7 +41,7 @@ export class NuevoAlumnoComponent implements OnInit {
     this.dialogRef.close()
   }
   agregar() {
-    this.dialogRef.close(this.formulario.value)
+    if (this.formulario.valid) this.dialogRef.close(this.formulario.value)
   }
 
 }

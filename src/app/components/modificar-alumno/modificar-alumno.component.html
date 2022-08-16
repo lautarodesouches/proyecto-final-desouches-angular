@@ -3,34 +3,13 @@
 
     <form [formGroup]="formulario" class='row align-items-center justify-content-center'>
 
-        <mat-form-field appearance="fill" class='col-4 my-2'>
-            <mat-label>Nombre</mat-label>
-            <input formControlName="nombre" matInput>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" class='col-4 my-2'>
-            <mat-label>Apellido</mat-label>
-            <input formControlName="apellido" matInput>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" class='col-4 my-2'>
-            <mat-label>Email</mat-label>
-            <input formControlName="email" matInput>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" class='col-4 my-2'>
-            <mat-label>Telefono</mat-label>
-            <input formControlName="telefono" matInput>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" class='col-4 my-2'>
-            <mat-label>Dni</mat-label>
-            <input formControlName="dni" matInput>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" class='col-4 my-2'>
-            <mat-label>Pais</mat-label>
-            <input formControlName="pais" matInput>
+        <mat-form-field *ngFor="let field of formFields" appearance="fill" class="col-4 my-4">
+            <mat-label>{{field | titlecase}}</mat-label>
+            <input formControlName="{{field}}" matInput>
+            <mat-hint class='my-2 text-danger'
+                *ngIf="formulario.get(field)?.touched && formulario.get(field)?.errors?.['required']">
+                *El campo es obligatorio
+            </mat-hint>
         </mat-form-field>
 
         <mat-slide-toggle formControlName="activo" class='col-4 align-self-center my-2'>Activo</mat-slide-toggle>

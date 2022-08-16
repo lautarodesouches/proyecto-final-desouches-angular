@@ -7,7 +7,7 @@ import { Alumno } from 'src/app/components/lista-alumnos/lista-alumnos.component
 export class NombreApellidoAlumnoPipe implements PipeTransform {
 
   transform(value: Alumno, ...args: unknown[]): unknown {
-    return value.nombre + ' ' + value.apellido;
+    return `${value.nombre} ${value.apellido}`;
   }
 
 }
