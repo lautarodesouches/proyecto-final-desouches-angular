@@ -1,0 +1,1 @@
+export {AlumnosService} from './alumnos/alumnos.service'

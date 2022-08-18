@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Alumno } from '../lista-alumnos/lista-alumnos.component';
+import { Alumno } from 'src/app/interfaces/alumno';
 
 @Component({
   selector: 'app-modificar-alumno',

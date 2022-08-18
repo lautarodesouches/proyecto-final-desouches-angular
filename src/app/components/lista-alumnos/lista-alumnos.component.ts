@@ -1,51 +1,50 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { BorrarAlumnoComponent } from '../borrar-alumno/borrar-alumno.component';
 import { ModificarAlumnoComponent } from '../modificar-alumno/modificar-alumno.component';
 import { NuevoAlumnoComponent } from '../nuevo-alumno/nuevo-alumno.component';
-
-export interface Alumno {
-  id: number
-  nombre: string
-  apellido: string
-  email: string
-  telefono: number
-  dni: number
-  pais: string
-  activo: boolean
-}
-
-const ELEMENT_DATA: Alumno[] = [
-  { id: 1, nombre: 'Cristian', apellido: 'Amador', email: 'cristian@email.com', telefono: 5497002343155, dni: 20860655, pais: 'AR', activo: true },
-  { id: 2, nombre: 'Timoteo', apellido: 'Bayona', email: 'timoteo@email.com', telefono: 5498089779700, dni: 34065191, pais: 'AR', activo: false },
-  { id: 3, nombre: 'Ester', apellido: 'Rios', email: 'ester@email.com', telefono: 5761457236682, dni: 87441870, pais: 'CO', activo: true },
-  { id: 4, nombre: 'Sigfrido', apellido: 'Gallart', email: 'sigfrido@email.com', telefono: 5494542679638, dni: 82472366, pais: 'AR', activo: true },
-  { id: 5, nombre: 'Camila', apellido: 'Hidalgo', email: 'camila@email.com', telefono: 5985982346426, dni: 75810926, pais: 'UR', activo: true },
-  { id: 6, nombre: 'Haroldo', apellido: 'Campos', email: 'haroldo@email.com', telefono: 5491428132549, dni: 22983104, pais: 'AR', activo: true },
-  { id: 7, nombre: 'Lorena', apellido: 'Hernandez', email: 'lorena@email.com', telefono: 5710984430382, dni: 85902663, pais: 'CO', activo: false },
-  { id: 8, nombre: 'Natalia', apellido: 'Batalla', email: 'natalia@email.com', telefono: 5650388923792, dni: 80062954, pais: 'CL', activo: true },
-  { id: 9, nombre: 'Jose', apellido: 'Clavero', email: 'jose@email.com', telefono: 5491877131249, dni: 87124785, pais: 'AR', activo: true },
-  { id: 10, nombre: 'Francisco', apellido: 'León', email: 'francisco@email.com', telefono: 5692457848113, dni: 57294097, pais: 'CL', activo: true }
-]
+import { AlumnosService } from '../../services/alumnos/alumnos.service';
+import { Alumno } from 'src/app/interfaces/alumno';
+import { filter, map, Observable, scan, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-lista-alumnos',
   templateUrl: './lista-alumnos.component.html',
   styleUrls: ['./lista-alumnos.component.css']
 })
-export class ListaAlumnosComponent implements OnInit {
+export class ListaAlumnosComponent implements OnInit, OnDestroy {
 
+  alumnos: any = []
   columnas: string[] = ['nombreCompleto', 'email', 'telefono', 'dni', 'pais', 'activo', 'acciones']
-
-  dataSource: MatTableDataSource<Alumno> = new MatTableDataSource(ELEMENT_DATA)
+  dataSource: MatTableDataSource<any> = new MatTableDataSource()
+  alumnoSubscripcion: Subscription
+  alumno$: Observable<any>
 
   @ViewChild(MatTable) listaAlumnos!: MatTable<Alumno>
 
-  constructor(private dialog: MatDialog) {
+  constructor(
+
+    private dialog: MatDialog,
+    private alumnoServicio: AlumnosService
+
+  ) {
+
+    this.alumnoSubscripcion = this.alumnoServicio.obtenerObservableAlumnos().pipe(
+      map((alumnos: Alumno[]) => alumnos.filter((alumno: any) => alumno.id !== 1))
+    ).subscribe(alumno => {
+      this.dataSource.data = alumno
+    })
+
+    this.alumno$ = this.alumnoServicio.obtenerObservableAlumnos()
+
   }
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void {
+    this.alumnoSubscripcion.unsubscribe()
   }
 
   editar(elemento: Alumno) {
