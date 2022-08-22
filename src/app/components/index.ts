@@ -1,5 +1,4 @@
 export { BorrarAlumnoComponent } from './borrar-alumno/borrar-alumno.component'
-export { ClasesComponent } from './clases/clases.component'
 export { FooterComponent } from './footer/footer.component'
 export { ListaAlumnosComponent } from './lista-alumnos/lista-alumnos.component'
 export { LoadingComponent } from './loading/loading.component'
