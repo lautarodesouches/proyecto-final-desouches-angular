@@ -1,60 +1,62 @@
-<div class='row justify-content-between align-items-center'>
-    <div class='col-12 col-md-4 text-center'>
-        <button mat-icon-button (click)="nuevoAlumno()">
-            <mat-icon>add_circle</mat-icon>
-        </button>
+<app-loading *ngIf="loading"></app-loading>
+<div *ngIf="!loading">
+    <div class='row justify-content-between align-items-center'>
+        <div class='col-12 col-md-4 text-center'>
+            <button mat-icon-button (click)="nuevoAlumno()">
+                <mat-icon>add_circle</mat-icon>
+            </button>
+        </div>
+        <mat-form-field class='col-12 col-md-4'>
+            <mat-label>Filtrar</mat-label>
+            <input type='text' matInput (keyup)="filtrar($event)">
+        </mat-form-field>
     </div>
-    <mat-form-field class='col-12 col-md-4'>
-        <mat-label>Filtrar</mat-label>
-        <input type='text' matInput (keyup)="filtrar($event)">
-    </mat-form-field>
+    <table mat-table [dataSource]="dataSource" class='border'>
+
+        <ng-container matColumnDef="nombreCompleto">
+            <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Nombre completo</th>
+            <td class='px-4' mat-cell *matCellDef="let element">{{element | nombreApellidoAlumno}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+            <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Email</th>
+            <td class='px-4' mat-cell *matCellDef="let element">{{element.email}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="telefono">
+            <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Telefono</th>
+            <td class='px-4' mat-cell *matCellDef="let element">{{element.telefono}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="dni">
+            <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Dni</th>
+            <td class='px-4' mat-cell *matCellDef="let element">{{element.dni | dni}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="pais">
+            <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Pais</th>
+            <td class='px-4' mat-cell *matCellDef="let element">{{element.pais}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="activo">
+            <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Activo</th>
+            <td class='px-4' mat-cell *matCellDef="let element">{{element.activo ? 'Si' : 'No'}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="acciones">
+            <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td class='px-4' mat-cell *matCellDef="let element">
+                <button mat-icon-button (click)="editar(element)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button (click)="eliminar(element.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+
+    </table>
 </div>
-<table mat-table [dataSource]="dataSource" class='border'>
-
-    <ng-container matColumnDef="nombreCompleto">
-        <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Nombre completo</th>
-        <td class='px-4' mat-cell *matCellDef="let element">{{element | nombreApellidoAlumno}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="email">
-        <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Email</th>
-        <td class='px-4' mat-cell *matCellDef="let element">{{element.email}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="telefono">
-        <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Telefono</th>
-        <td class='px-4' mat-cell *matCellDef="let element">{{element.telefono}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="dni">
-        <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Dni</th>
-        <td class='px-4' mat-cell *matCellDef="let element">{{element.dni | dni}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="pais">
-        <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Pais</th>
-        <td class='px-4' mat-cell *matCellDef="let element">{{element.pais}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="activo">
-        <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Activo</th>
-        <td class='px-4' mat-cell *matCellDef="let element">{{element.activo ? 'Si' : 'No'}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="acciones">
-        <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Acciones</th>
-        <td class='px-4' mat-cell *matCellDef="let element">
-            <button mat-icon-button (click)="editar(element)">
-                <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-icon-button (click)="eliminar(element.id)">
-                <mat-icon>delete</mat-icon>
-            </button>
-        </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="columnas"></tr>
-    <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
-
-</table>
-<pre>{{alumno$ | async | json}}</pre>

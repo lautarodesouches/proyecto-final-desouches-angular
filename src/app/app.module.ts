@@ -11,6 +11,7 @@ import { DniPipe, NombreApellidoAlumnoPipe } from './pipes';
 import { TitleFontSizeDirective } from './directives';
 import { BorrarAlumnoComponent } from './components/borrar-alumno/borrar-alumno.component';
 import { NuevoAlumnoComponent } from './components/nuevo-alumno/nuevo-alumno.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { NuevoAlumnoComponent } from './components/nuevo-alumno/nuevo-alumno.com
     TitleFontSizeDirective,
     ModificarAlumnoComponent,
     BorrarAlumnoComponent,
-    NuevoAlumnoComponent
+    NuevoAlumnoComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

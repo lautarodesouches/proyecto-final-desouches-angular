@@ -6,7 +6,7 @@ import { ModificarAlumnoComponent } from '../modificar-alumno/modificar-alumno.c
 import { NuevoAlumnoComponent } from '../nuevo-alumno/nuevo-alumno.component';
 import { AlumnosService } from '../../services/alumnos/alumnos.service';
 import { Alumno } from 'src/app/interfaces/alumno';
-import { filter, map, Observable, scan, Subscription } from 'rxjs';
+import { map, Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-lista-alumnos',
@@ -15,11 +15,12 @@ import { filter, map, Observable, scan, Subscription } from 'rxjs';
 })
 export class ListaAlumnosComponent implements OnInit, OnDestroy {
 
-  alumnos: any = []
-  columnas: string[] = ['nombreCompleto', 'email', 'telefono', 'dni', 'pais', 'activo', 'acciones']
-  dataSource: MatTableDataSource<any> = new MatTableDataSource()
-  alumnoSubscripcion: Subscription
-  alumno$: Observable<any>
+  public loading: boolean = true
+  public alumnos: any = []
+  public columnas: string[] = ['nombreCompleto', 'email', 'telefono', 'dni', 'pais', 'activo', 'acciones']
+  public dataSource: MatTableDataSource<any> = new MatTableDataSource()
+  public alumnoSubscripcion: Subscription
+  public alumno$: Observable<any>
 
   @ViewChild(MatTable) listaAlumnos!: MatTable<Alumno>
 
@@ -30,13 +31,18 @@ export class ListaAlumnosComponent implements OnInit, OnDestroy {
 
   ) {
 
-    this.alumnoSubscripcion = this.alumnoServicio.obtenerObservableAlumnos().pipe(
-      map((alumnos: Alumno[]) => alumnos.filter((alumno: any) => alumno.id !== 1))
-    ).subscribe(alumno => {
-      this.dataSource.data = alumno
-    })
-
     this.alumno$ = this.alumnoServicio.obtenerObservableAlumnos()
+
+    this.alumnoSubscripcion = this.alumnoServicio.obtenerObservableAlumnos().pipe(
+
+      map((alumnos: Alumno[]) => alumnos.filter((alumno: any) => alumno.id !== 1))
+
+    ).subscribe(alumno => {
+      
+      this.dataSource.data = alumno
+      this.loading = false
+    
+    })
 
   }
 
