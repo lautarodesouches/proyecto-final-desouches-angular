@@ -3,15 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppMaterialModule } from './app.material.module';
+import { AppMaterialModule } from './material/app.material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { ModificarAlumnoComponent, FooterComponent, ListaAlumnosComponent, NavBarComponent, ToolbarComponent } from './components';
+import { ModificarAlumnoComponent, FooterComponent, ListaAlumnosComponent, NavBarComponent, ToolbarComponent, BorrarAlumnoComponent, NuevoAlumnoComponent, LoadingComponent, PageNotFoundComponent } from './components';
 import { DniPipe, NombreApellidoAlumnoPipe } from './pipes';
 import { TitleFontSizeDirective } from './directives';
-import { BorrarAlumnoComponent } from './components/borrar-alumno/borrar-alumno.component';
-import { NuevoAlumnoComponent } from './components/nuevo-alumno/nuevo-alumno.component';
-import { LoadingComponent } from './components/loading/loading.component';
+import { RoutesModule } from './routes/routes.module';
 
 @NgModule({
   declarations: [
@@ -27,13 +25,15 @@ import { LoadingComponent } from './components/loading/loading.component';
     ModificarAlumnoComponent,
     BorrarAlumnoComponent,
     NuevoAlumnoComponent,
-    LoadingComponent
+    LoadingComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppMaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RoutesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

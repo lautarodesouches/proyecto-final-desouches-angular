@@ -33,15 +33,15 @@ export class ListaAlumnosComponent implements OnInit, OnDestroy {
 
     this.alumno$ = this.alumnoServicio.obtenerObservableAlumnos()
 
-    this.alumnoSubscripcion = this.alumnoServicio.obtenerObservableAlumnos().pipe(
+    this.alumnoSubscripcion = this.alumno$.pipe(
 
       map((alumnos: Alumno[]) => alumnos.filter((alumno: any) => alumno.id !== 1))
 
     ).subscribe(alumno => {
-      
+    
       this.dataSource.data = alumno
       this.loading = false
-    
+
     })
 
   }

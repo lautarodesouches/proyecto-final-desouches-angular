@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+interface navItem {
+  title: string
+  route: string
+}
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,15 +14,21 @@ import { Component, OnInit } from '@angular/core';
 
 export class NavBarComponent implements OnInit {
 
-  navItems: string[] = [
-    'alumnos',
-    'clases',
-    'cursos'
+  navItems: navItem[] = [
+    { title: 'alumnos', route: 'lista-alumnos' },
+    { title: 'clases', route: 'clases' },
+    { title: 'cursos', route: 'cursos' }
   ]
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  redirect(route: string) {
+    this.router.navigate([route])
   }
 
 }
