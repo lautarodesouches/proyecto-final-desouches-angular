@@ -9,6 +9,15 @@ import { MatInputModule } from '@angular/material/input'
 import { MatSlideToggleModule } from '@angular/material/slide-toggle'
 
 @NgModule({
+    imports: [
+        MatTableModule,
+        MatIconModule,
+        MatButtonModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSlideToggleModule
+    ],
     exports: [
         MatTableModule,
         MatIconModule,

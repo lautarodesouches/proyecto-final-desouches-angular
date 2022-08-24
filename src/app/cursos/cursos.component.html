@@ -1,0 +1,47 @@
+<h5 *ngIf="loading" class='loading__text'>Cargando...</h5>
+<div *ngIf="!loading">
+    <div class='row justify-content-between align-items-center'>
+        <div class='col-12 col-md-4 text-center'>
+            <button mat-icon-button (click)="nuevoAlumno()">
+                <mat-icon>add_circle</mat-icon>
+            </button>
+        </div>
+        <mat-form-field class='col-12 col-md-4'>
+            <mat-label>Filtrar</mat-label>
+            <input type='text' matInput (keyup)="filtrar($event)">
+        </mat-form-field>
+    </div>
+    <table mat-table [dataSource]="dataSource" class='border'>
+
+        <ng-container matColumnDef="comision">
+            <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Comisión</th>
+            <td class='px-4' mat-cell *matCellDef="let element">{{element.comision}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="nombre">
+            <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td class='px-4' mat-cell *matCellDef="let element">{{element.nombre}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="profesor">
+            <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Profesor</th>
+            <td class='px-4' mat-cell *matCellDef="let element">{{element.profesor}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="acciones">
+            <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td class='px-4' mat-cell *matCellDef="let element">
+                <button mat-icon-button (click)="editar(element)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button (click)="eliminar(element.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+
+    </table>
+</div>

@@ -6,16 +6,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RoutesModule } from './routes/routes.module';
 
 // Shared
-import { SharedModule } from './shared/shared.module';
 import { TitleFontSizeDirective } from './shared/directives';
 import { NavBarComponent, FooterComponent, PageNotFoundComponent, ToolbarComponent } from './shared/components';
+
+// Features
 import { AlumnosModule } from './alumnos/alumnos.module';
+import { CursosModule } from './cursos/cursos.module';
+import { ClasesModule } from './clases/clases.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FooterComponent,
     TitleFontSizeDirective,
+    FooterComponent,
     NavBarComponent,
     PageNotFoundComponent,
     ToolbarComponent
@@ -24,8 +28,11 @@ import { AlumnosModule } from './alumnos/alumnos.module';
     BrowserModule,
     BrowserAnimationsModule,
     RoutesModule,
-    SharedModule,
-    AlumnosModule
+    AlumnosModule,
+    CursosModule,
+    ClasesModule,
+    SharedModule
+  
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,17 +6,12 @@ import { AlumnosComponent } from './alumnos.component';
 import { ModificarAlumnoComponent, NuevoAlumnoComponent } from './components';
 
 import { SharedModule } from '../shared/shared.module';
-import { LoadingComponent } from '../shared/components';
-import { DniPipe, NombreApellidoAlumnoPipe } from '../shared/pipes';
 
 @NgModule({
   declarations: [
     AlumnosComponent,
     NuevoAlumnoComponent,
-    ModificarAlumnoComponent,
-    LoadingComponent,
-    DniPipe,
-    NombreApellidoAlumnoPipe
+    ModificarAlumnoComponent
   ],
   imports: [
     CommonModule,

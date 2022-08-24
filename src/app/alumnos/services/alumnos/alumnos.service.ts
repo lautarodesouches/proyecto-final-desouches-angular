@@ -29,9 +29,7 @@ export class AlumnosService {
     })
   }
 
-  obtenerAlumnos() {
-    console.log('obteniendo alumnos');
-    
+  obtenerAlumnos() {    
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (LISTA_ALUMNOS.length > 0) {
