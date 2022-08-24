@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
-import { ListaAlumnosComponent, PageNotFoundComponent } from '../components'
+import { ListaAlumnosComponent } from '../components'
+import { PageNotFoundComponent } from '../shared/components'
 
 const router: Routes = [
     { path: 'lista-alumnos', component: ListaAlumnosComponent },
