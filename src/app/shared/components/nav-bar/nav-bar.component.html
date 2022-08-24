@@ -1,10 +1,10 @@
 <nav class='d-flex align-items-center h-100'>
     <ul class='list-unstyled'>
-        <div *ngFor="let item of navItems" class='py-1 h5'>
+        <div *ngFor="let page of navItems" class='py-1 h5'>
             <a class='text-white text-decoration-none cursor-pointer'>
-                <li (click)="redirect(item.route)" data-bs-toggle="collapse"
-                    data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
-                    aria-expanded="false" aria-label="Toggle navigation">{{item.title | titlecase}}</li>
+                <li (click)="redirect(page)" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent"
+                    aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                    {{page | titlecase}}</li>
             </a>
         </div>
     </ul>

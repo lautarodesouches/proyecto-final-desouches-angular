@@ -12,35 +12,11 @@
         </mat-form-field>
     </div>
     <table mat-table [dataSource]="dataSource" class='border'>
-
-        <ng-container matColumnDef="nombreCompleto">
-            <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Nombre completo</th>
-            <td class='px-4' mat-cell *matCellDef="let element">{{element | nombreApellidoAlumno}}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="email">
-            <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Email</th>
-            <td class='px-4' mat-cell *matCellDef="let element">{{element.email}}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="telefono">
-            <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Telefono</th>
-            <td class='px-4' mat-cell *matCellDef="let element">{{element.telefono}}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="dni">
-            <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Dni</th>
-            <td class='px-4' mat-cell *matCellDef="let element">{{element.dni | dni}}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="pais">
-            <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Pais</th>
-            <td class='px-4' mat-cell *matCellDef="let element">{{element.pais}}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="activo">
-            <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Activo</th>
-            <td class='px-4' mat-cell *matCellDef="let element">{{element.activo ? 'Si' : 'No'}}</td>
+        <ng-container *ngFor="let columna of columnas">
+            <ng-container matColumnDef="{{columna}}">
+                <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>{{columna | titlecase}}</th>
+                <td class='px-4' mat-cell *matCellDef="let element">{{element[columna] }}</td>
+            </ng-container>
         </ng-container>
 
         <ng-container matColumnDef="acciones">

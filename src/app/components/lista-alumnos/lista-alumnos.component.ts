@@ -17,7 +17,7 @@ export class ListaAlumnosComponent implements OnInit, OnDestroy {
 
   public loading: boolean = true
   public alumnos: any = []
-  public columnas: string[] = ['nombreCompleto', 'email', 'telefono', 'dni', 'pais', 'activo', 'acciones']
+  public columnas: string[] = ['nombre', 'apellido', 'email', 'telefono', 'dni', 'pais', 'activo']
   public dataSource: MatTableDataSource<any> = new MatTableDataSource()
   public alumnoSubscripcion: Subscription
   public alumno$: Observable<any>
