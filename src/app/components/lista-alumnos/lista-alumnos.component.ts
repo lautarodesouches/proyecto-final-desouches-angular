@@ -5,7 +5,7 @@ import { BorrarAlumnoComponent } from '../borrar-alumno/borrar-alumno.component'
 import { ModificarAlumnoComponent } from '../modificar-alumno/modificar-alumno.component';
 import { NuevoAlumnoComponent } from '../nuevo-alumno/nuevo-alumno.component';
 import { AlumnosService } from '../../services/alumnos/alumnos.service';
-import { Alumno } from 'src/app/interfaces/alumno';
+import { Alumno } from 'src/app/shared/interfaces/alumno';
 import { map, Observable, Subscription } from 'rxjs';
 
 @Component({

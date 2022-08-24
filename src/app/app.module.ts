@@ -3,13 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { LoadingComponent, NavBarComponent, FooterComponent, PageNotFoundComponent, ToolbarComponent } from './shared/components';
-
 import { ModificarAlumnoComponent, ListaAlumnosComponent, BorrarAlumnoComponent, NuevoAlumnoComponent } from './components';
-import { DniPipe, NombreApellidoAlumnoPipe } from './pipes';
-import { TitleFontSizeDirective } from './directives';
+
 import { RoutesModule } from './routes/routes.module';
+
+// Shared
 import { SharedModule } from './shared/shared.module';
+import { TitleFontSizeDirective } from './shared/directives';
+import { DniPipe, NombreApellidoAlumnoPipe } from './shared/pipes';
+import { LoadingComponent, NavBarComponent, FooterComponent, PageNotFoundComponent, ToolbarComponent } from './shared/components';
 
 @NgModule({
   declarations: [
@@ -37,4 +39,5 @@ import { SharedModule } from './shared/shared.module';
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

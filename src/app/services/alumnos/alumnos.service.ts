@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { Alumno } from 'src/app/interfaces/alumno';
+import { Alumno } from 'src/app/shared/interfaces/alumno';
 
 const LISTA_ALUMNOS: Alumno[] = [
   { id: 1, nombre: 'Cristian', apellido: 'Amador', email: 'cristian@email.com', telefono: 5497002343155, dni: 20860655, pais: 'AR', activo: true },
