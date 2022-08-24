@@ -1,23 +1,23 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { BorrarAlumnoComponent } from '../borrar-alumno/borrar-alumno.component';
-import { ModificarAlumnoComponent } from '../modificar-alumno/modificar-alumno.component';
-import { NuevoAlumnoComponent } from '../nuevo-alumno/nuevo-alumno.component';
-import { AlumnosService } from '../../services/alumnos/alumnos.service';
+import { BorrarAlumnoComponent } from './components/borrar-alumno/borrar-alumno.component';
+import { ModificarAlumnoComponent } from './components/modificar-alumno/modificar-alumno.component';
+import { NuevoAlumnoComponent } from './components/nuevo-alumno/nuevo-alumno.component';
+import { AlumnosService } from './services/alumnos/alumnos.service';
 import { Alumno } from 'src/app/shared/interfaces/alumno';
 import { map, Observable, Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-lista-alumnos',
-  templateUrl: './lista-alumnos.component.html',
-  styleUrls: ['./lista-alumnos.component.css']
+  selector: 'app-alumnos',
+  templateUrl: './alumnos.component.html',
+  styleUrls: ['./alumnos.component.css']
 })
-export class ListaAlumnosComponent implements OnInit, OnDestroy {
+export class AlumnosComponent implements OnInit, OnDestroy {
 
   public loading: boolean = true
   public alumnos: any = []
-  public columnas: string[] = ['nombre', 'apellido', 'email', 'telefono', 'dni', 'pais', 'activo']
+  public columnas: string[] = ['nombreCompleto', 'email', 'telefono', 'dni', 'pais', 'activo']
   public dataSource: MatTableDataSource<any> = new MatTableDataSource()
   public alumnoSubscripcion: Subscription
   public alumno$: Observable<any>

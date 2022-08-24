@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
-import { ListaAlumnosComponent } from '../components'
 import { PageNotFoundComponent } from '../shared/components'
+import { AlumnosComponent } from '../alumnos/alumnos.component';
 
 const router: Routes = [
-    { path: 'alumnos', component: ListaAlumnosComponent },
-    { path: 'clases', component: ListaAlumnosComponent },
-    { path: 'cursos', component: ListaAlumnosComponent },
+    { path: 'alumnos', component: AlumnosComponent },
+    { path: 'clases', component: AlumnosComponent },
+    { path: 'cursos', component: AlumnosComponent },
     { path: 'page-not-found', component: PageNotFoundComponent },
     { path: '', redirectTo: 'alumnos', pathMatch: 'full' },
     { path: '**', redirectTo: 'page-not-found', pathMatch: 'full' }
