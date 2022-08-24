@@ -20,4 +20,4 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle'
     ]
 })
 
-export class AppMaterialModule { }
+export class MaterialModule { }
