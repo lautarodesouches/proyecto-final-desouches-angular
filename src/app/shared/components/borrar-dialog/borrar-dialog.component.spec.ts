@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BorrarAlumnoComponent } from './borrar-alumno.component';
+import { BorrarDialogComponent } from './borrar-dialog.component';
 
-describe('BorrarAlumnoComponent', () => {
-  let component: BorrarAlumnoComponent;
-  let fixture: ComponentFixture<BorrarAlumnoComponent>;
+describe('BorrarDialogComponent', () => {
+  let component: BorrarDialogComponent;
+  let fixture: ComponentFixture<BorrarDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BorrarAlumnoComponent ]
+      declarations: [ BorrarDialogComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(BorrarAlumnoComponent);
+    fixture = TestBed.createComponent(BorrarDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

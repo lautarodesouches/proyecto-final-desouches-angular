@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-borrar-alumno',
-  templateUrl: './borrar-alumno.component.html',
-  styleUrls: ['./borrar-alumno.component.css']
+  selector: 'app-borrar-dialog',
+  templateUrl: './borrar-dialog.component.html',
+  styleUrls: ['./borrar-dialog.component.css']
 })
-export class BorrarAlumnoComponent implements OnInit {
+export class BorrarDialogComponent implements OnInit {
 
   constructor(
-    private dialogRef: MatDialogRef<BorrarAlumnoComponent>
+    private dialogRef: MatDialogRef<BorrarDialogComponent>
   ) { }
 
   ngOnInit(): void {

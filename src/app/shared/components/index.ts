@@ -1,3 +1,4 @@
+export { BorrarDialogComponent } from './borrar-dialog/borrar-dialog.component'
 export { LoadingComponent } from './loading/loading.component'
 export { NavBarComponent } from './nav-bar/nav-bar.component'
 export { PageNotFoundComponent } from './page-not-found/page-not-found.component'

@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { BorrarAlumnoComponent } from './components/borrar-alumno/borrar-alumno.component';
 import { ModificarAlumnoComponent } from './components/modificar-alumno/modificar-alumno.component';
 import { NuevoAlumnoComponent } from './components/nuevo-alumno/nuevo-alumno.component';
 import { AlumnosService } from './services/alumnos/alumnos.service';
 import { Alumno } from 'src/app/shared/interfaces/alumno';
 import { map, Observable, Subscription } from 'rxjs';
+import { BorrarDialogComponent } from '../shared/components/borrar-dialog/borrar-dialog.component';
 
 @Component({
   selector: 'app-alumnos',
@@ -17,7 +17,7 @@ export class AlumnosComponent implements OnInit, OnDestroy {
 
   public loading: boolean = true
   public alumnos: any = []
-  public columnas: string[] = ['nombreCompleto', 'email', 'telefono', 'dni', 'pais', 'activo']
+  public columnas: string[] = ['nombreCompleto', 'email', 'telefono', 'dni', 'pais', 'activo', 'acciones']
   public dataSource: MatTableDataSource<any> = new MatTableDataSource()
   public alumnoSubscripcion: Subscription
   public alumno$: Observable<any>
@@ -70,7 +70,7 @@ export class AlumnosComponent implements OnInit, OnDestroy {
   }
 
   eliminar(idAlumno: number) {
-    const dialogRef = this.dialog.open(BorrarAlumnoComponent, {
+    const dialogRef = this.dialog.open(BorrarDialogComponent, {
       width: '20%'
     })
 
