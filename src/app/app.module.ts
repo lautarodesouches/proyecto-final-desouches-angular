@@ -5,15 +5,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { RoutesModule } from './routes/routes.module';
 
-// Shared
 import { TitleFontSizeDirective } from './shared/directives';
 import { NavBarComponent, FooterComponent, PageNotFoundComponent, ToolbarComponent } from './shared/components';
 
-// Features
 import { AlumnosModule } from './alumnos/alumnos.module';
 import { CursosModule } from './cursos/cursos.module';
 import { ClasesModule } from './clases/clases.module';
 import { SharedModule } from './shared/shared.module';
+import { AuthModule } from './auth/auth.module';
+import { CoreModule } from './core/core.module';
+import { AuthService } from './core/services/auth.service';
 
 @NgModule({
   declarations: [
@@ -28,13 +29,16 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     BrowserAnimationsModule,
     RoutesModule,
+    AuthModule,
     AlumnosModule,
     CursosModule,
     ClasesModule,
-    SharedModule
-  
+    SharedModule,
+    CoreModule
   ],
-  providers: [],
+  providers: [
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 

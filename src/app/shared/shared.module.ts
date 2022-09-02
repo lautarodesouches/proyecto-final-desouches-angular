@@ -17,6 +17,7 @@ import { BorrarDialogComponent } from './components';
     ReactiveFormsModule
   ],
   exports: [
+    CommonModule,
     MaterialModule,
     ReactiveFormsModule,
     DniPipe,
