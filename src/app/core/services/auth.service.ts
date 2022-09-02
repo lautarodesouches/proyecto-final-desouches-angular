@@ -40,4 +40,8 @@ export class AuthService {
     return this.sesionSubject.asObservable()
   }
 
+  estaLoggeado() {
+    return this.sesionSubject.value.sesionActiva
+  }
+
 }
