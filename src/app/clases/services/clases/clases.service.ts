@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 import { Clase } from 'src/app/shared/interfaces/clase';
 
 const LISTA_CLASES: Clase[] = [
@@ -19,7 +19,7 @@ const LISTA_CLASES: Clase[] = [
 })
 export class ClasesService {
 
-  clasesSubject: Subject<any> = new Subject()
+  clasesSubject: ReplaySubject<any> = new ReplaySubject(1)
 
   constructor(
   ) {

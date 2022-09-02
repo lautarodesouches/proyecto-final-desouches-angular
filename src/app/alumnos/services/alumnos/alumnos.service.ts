@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 import { Alumno } from 'src/app/shared/interfaces/alumno';
 
 const LISTA_ALUMNOS: Alumno[] = [
@@ -20,7 +20,7 @@ const LISTA_ALUMNOS: Alumno[] = [
 })
 export class AlumnosService {
 
-  alumnoSubject: Subject<any> = new Subject()
+  alumnoSubject: ReplaySubject<any> = new ReplaySubject(1)
 
   constructor(
   ) {
@@ -29,7 +29,7 @@ export class AlumnosService {
     })
   }
 
-  obtenerAlumnos() {    
+  obtenerAlumnos() {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (LISTA_ALUMNOS.length > 0) {

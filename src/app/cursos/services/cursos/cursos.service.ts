@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 import { Curso } from 'src/app/shared/interfaces/curso';
 
 const LISTA_CURSOS: Curso[] = [
@@ -15,18 +15,16 @@ const LISTA_CURSOS: Curso[] = [
 })
 export class CursosService {
 
-  cursosSubject: Subject<any> = new Subject()
+  cursosSubject: ReplaySubject<any> = new ReplaySubject(1)
 
   constructor(
   ) {
-    this.obtenerAlumnos().then((res) => {
+    this.obtenerCursos().then((res) => {
       this.cursosSubject.next(res)
     })
   }
 
-  obtenerAlumnos() {
-    console.log('obteniendo alumnos');
-    
+  obtenerCursos() {    
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (LISTA_CURSOS.length > 0) {
@@ -35,14 +33,14 @@ export class CursosService {
         reject(
           {
             id: 400,
-            message: 'No se han encontrado alumnos'
+            message: 'No se han encontrado cursos'
           }
         )
       }, 2000)
     })
   }
 
-  obtenerObservableAlumnos() {
+  obtenerObservableCursos() {
     return this.cursosSubject.asObservable()
   }
 

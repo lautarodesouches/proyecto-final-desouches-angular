@@ -31,7 +31,7 @@ export class CursosComponent implements OnInit, OnDestroy {
 
   ) {
 
-    this.curso$ = this.alumnoServicio.obtenerObservableAlumnos()
+    this.curso$ = this.alumnoServicio.obtenerObservableCursos()
 
     this.cursoSubscripcion = this.curso$.pipe(
 
