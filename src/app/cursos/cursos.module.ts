@@ -6,6 +6,7 @@ import { CursosComponent } from './cursos.component';
 import { ModificarCursoComponent, NuevoCursoComponent } from './components';
 
 import { SharedModule } from '../shared/shared.module';
+import { CursosRoutingModule } from './routes/cursos-routing.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { SharedModule } from '../shared/shared.module';
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    CursosRoutingModule
   ]
 })
 

@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { AuthRoutingModule } from './routes/auth-routing.module';
 import { LoginComponent } from './components';
 import { SharedModule } from '../shared/shared.module';
-import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -13,8 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     CommonModule,
     AuthRoutingModule,
-    SharedModule,
-    MatButtonModule
+    SharedModule
   ]
 })
 

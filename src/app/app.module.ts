@@ -8,11 +8,7 @@ import { RoutesModule } from './routes/routes.module';
 import { TitleFontSizeDirective } from './shared/directives';
 import { NavBarComponent, FooterComponent, PageNotFoundComponent, ToolbarComponent } from './shared/components';
 
-import { AlumnosModule } from './alumnos/alumnos.module';
-import { CursosModule } from './cursos/cursos.module';
-import { ClasesModule } from './clases/clases.module';
 import { SharedModule } from './shared/shared.module';
-import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
 import { AuthService } from './core/services/auth.service';
 
@@ -29,10 +25,6 @@ import { AuthService } from './core/services/auth.service';
     BrowserModule,
     BrowserAnimationsModule,
     RoutesModule,
-    AuthModule,
-    AlumnosModule,
-    CursosModule,
-    ClasesModule,
     SharedModule,
     CoreModule
   ],
