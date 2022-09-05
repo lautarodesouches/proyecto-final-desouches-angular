@@ -7,6 +7,7 @@ import { map, Observable, Subscription } from 'rxjs';
 import { BorrarDialogComponent } from '../shared/components/borrar-dialog/borrar-dialog.component';
 import { Alumno } from '../models/alumno';
 import { AlumnoService } from './services/alumno.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -28,7 +29,8 @@ export class AlumnosComponent implements OnInit, OnDestroy {
   constructor(
 
     private dialog: MatDialog,
-    private alumnoServicio: AlumnoService
+    private alumnoServicio: AlumnoService,
+    private router: Router
 
   ) {
 
@@ -89,6 +91,10 @@ export class AlumnosComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(resultado => {
       if (resultado) this.alumnoServicio.nuevoAlumno(resultado)
     })
+  }
+
+  detalle(alumno: Alumno) {
+    this.router.navigate(['alumnos/detalle', alumno.id])
   }
 
 }

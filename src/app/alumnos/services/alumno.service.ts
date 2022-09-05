@@ -48,4 +48,10 @@ export class AlumnoService {
     )
   }
 
+  detalleAlumno(id: string) {
+    this.http.get<Alumno[]>(this.api, {params: {id: '25'}}).subscribe(alumnos => {
+      this.alumnoSubject.next(alumnos)
+    })
+  }
+
 }
