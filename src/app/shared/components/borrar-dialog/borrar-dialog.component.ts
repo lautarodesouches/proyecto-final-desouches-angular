@@ -18,6 +18,7 @@ export class BorrarDialogComponent implements OnInit {
   cancelar() {
     this.dialogRef.close(false)
   }
+  
   borrar() {
     this.dialogRef.close(true)
   }

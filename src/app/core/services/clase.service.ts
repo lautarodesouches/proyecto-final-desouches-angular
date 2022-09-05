@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { Clase } from 'src/app/models/clase';
 import { environment } from 'src/environments/environment';
 
@@ -10,27 +10,42 @@ import { environment } from 'src/environments/environment';
 
 export class ClaseService {
 
+  private alumnoSubject!: BehaviorSubject<Clase[]>
   private api: string = environment.api + 'clases/'
 
   constructor(
     private http: HttpClient
-  ) { }
-
-  obtenerClases(): Observable<Clase[]> {
-    return this.http.get<Clase[]>(this.api)
+  ) {
+    this.alumnoSubject = new BehaviorSubject<Clase[]>([])
   }
 
-  nuevoClase(clase: Clase) {
-    return this.http.post<Clase>(this.api, clase)
+  private consultarClases() {
+    this.http.get<Clase[]>(this.api).subscribe(clases => {
+      this.alumnoSubject.next(clases)
+    })
+  }
+
+  obtenerClases() {
+    this.consultarClases()
+    return this.alumnoSubject.asObservable()
+  }
+
+  nuevaClase(clase: Clase) {
+    this.http.post<Clase>(this.api, clase).subscribe(() =>
+      this.consultarClases()
+    )
   }
 
   modificarClase(clase: Clase) {
-    console.log(clase)
-    return this.http.put<Clase>(this.api + clase.id, clase)
+    this.http.put<Clase>(this.api + clase.id, clase).subscribe(() =>
+      this.consultarClases()
+    )
   }
 
   eliminarClase(id: string) {
-    return this.http.delete<Clase>(this.api + id)
+    this.http.delete<Clase>(this.api + id).subscribe(() =>
+      this.consultarClases()
+    )
   }
 
 }

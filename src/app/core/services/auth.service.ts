@@ -16,7 +16,7 @@ export class AuthService {
     }
 
     this.sesionSubject = new BehaviorSubject(sesion)
-    this.sesionSubject
+    
   }
 
   iniciarSesion(usuario: Usuario) {

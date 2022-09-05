@@ -60,24 +60,17 @@ export class CursosComponent implements OnInit, OnDestroy {
     })
 
     dialogRef.afterClosed().subscribe(resultado => {
-      if (resultado) {
-        const item = this.dataSource.data.find(curso => curso.id === resultado.id)
-        const index = this.dataSource.data.indexOf(item!)
-        this.dataSource.data[index] = resultado
-        this.listaCursos.renderRows()
-      }
+      if (resultado) this.cursoServicio.modificarCurso(resultado)
     })
   }
 
-  eliminar(comision: string) {
+  eliminar(idCurso: string) {
     const dialogRef = this.dialog.open(BorrarDialogComponent, {
       width: '20%'
     })
 
     dialogRef.afterClosed().subscribe(resultado => {
-      if (resultado) {
-        this.dataSource.data = this.dataSource.data.filter((curso: Curso) => curso.comision !== comision)
-      }
+      if (resultado) this.cursoServicio.eliminarCurso(idCurso)
     })
   }
 
@@ -92,10 +85,7 @@ export class CursosComponent implements OnInit, OnDestroy {
     })
 
     dialogRef.afterClosed().subscribe(resultado => {
-      if (resultado) {
-        this.dataSource.data.push({ ...resultado, id: this.dataSource.data.length + 1 })
-        this.listaCursos.renderRows()
-      }
+      if (resultado) this.cursoServicio.nuevoCurso(resultado)
     })
   }
 

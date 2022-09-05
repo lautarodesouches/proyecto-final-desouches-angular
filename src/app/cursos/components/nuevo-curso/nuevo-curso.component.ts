@@ -21,16 +21,12 @@ export class NuevoCursoComponent implements OnInit {
 
     this.formulario = fb.group({
       id: new FormControl('', []),
+      comision: new FormControl('', [Validators.required]),
       nombre: new FormControl('', [Validators.required]),
-      apellido: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      telefono: new FormControl('', [Validators.required]),
-      dni: new FormControl('', [Validators.required]),
-      pais: new FormControl('', [Validators.required, Validators.maxLength(2)]),
-      activo: new FormControl('', []),
+      profesor: new FormControl('', [Validators.required])
     })
 
-    this.formFields = ['nombre', 'apellido', 'email', 'telefono', 'dni', 'pais']
+    this.formFields = ['id', 'comision', 'nombre', 'profesor']
 
   }
 
@@ -40,6 +36,7 @@ export class NuevoCursoComponent implements OnInit {
   cerrar() {
     this.dialogRef.close()
   }
+
   agregar() {
     if (this.formulario.valid) this.dialogRef.close(this.formulario.value)
   }

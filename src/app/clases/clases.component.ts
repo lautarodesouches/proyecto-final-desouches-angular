@@ -35,7 +35,7 @@ export class ClasesComponent implements OnInit, OnDestroy {
 
     this.claseSubscripcion = this.clase$.pipe(
 
-      map((clases: Clase[]) => clases.filter((clase: any) => clase.id !== 1))
+      map((clases: Clase[]) => clases.filter((clase: any) => clase.id !== '1'))
 
     ).subscribe(clase => {
 
@@ -60,24 +60,17 @@ export class ClasesComponent implements OnInit, OnDestroy {
     })
 
     dialogRef.afterClosed().subscribe(resultado => {
-      if (resultado) {
-        const item = this.dataSource.data.find(clase => clase.id === resultado.id)
-        const index = this.dataSource.data.indexOf(item!)
-        this.dataSource.data[index] = resultado
-        this.listaClases.renderRows()
-      }
+      if (resultado) this.clasesServicio.modificarClase(resultado)
     })
   }
 
-  eliminar(idAlumno: string) {
+  eliminar(idClase: string) {
     const dialogRef = this.dialog.open(BorrarDialogComponent, {
       width: '20%'
     })
 
     dialogRef.afterClosed().subscribe(resultado => {
-      if (resultado) {
-        this.dataSource.data = this.dataSource.data.filter((clase: Clase) => clase.id !== idAlumno)
-      }
+      if (resultado) this.clasesServicio.eliminarClase(idClase)
     })
   }
 
@@ -86,16 +79,13 @@ export class ClasesComponent implements OnInit, OnDestroy {
     this.dataSource.filter = valorObtenido.trim().toLocaleLowerCase()
   }
 
-  nuevoAlumno() {
+  nuevaClase() {
     const dialogRef = this.dialog.open(NuevaClaseComponent, {
       width: '50%'
     })
 
     dialogRef.afterClosed().subscribe(resultado => {
-      if (resultado) {
-        this.dataSource.data.push({ ...resultado, id: this.dataSource.data.length + 1 })
-        this.listaClases.renderRows()
-      }
+      if (resultado) this.clasesServicio.nuevaClase(resultado)
     })
   }
 
