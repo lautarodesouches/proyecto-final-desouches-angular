@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Alumno } from 'src/app/shared/interfaces/alumno';
+import { Clase } from 'src/app/models/clase';
 
 @Component({
   selector: 'app-modificar-clases',
@@ -17,22 +17,17 @@ export class ModificarClasesComponent implements OnInit {
 
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<ModificarClasesComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Alumno
+    @Inject(MAT_DIALOG_DATA) public data: Clase
 
   ) {
 
     this.formulario = fb.group({
       id: new FormControl(data.id, [Validators.required]),
       nombre: new FormControl(data.nombre, [Validators.required]),
-      apellido: new FormControl(data.apellido, [Validators.required]),
-      email: new FormControl(data.email, [Validators.required]),
-      telefono: new FormControl(data.telefono, [Validators.required]),
-      dni: new FormControl(data.dni, [Validators.required]),
-      pais: new FormControl(data.pais, [Validators.required]),
-      activo: new FormControl(data.activo, [Validators.required])
+      curso: new FormControl(data.curso, [Validators.required]),
     })
 
-    this.formFields = ['nombre', 'apellido', 'email', 'telefono', 'dni', 'pais']
+    this.formFields = ['nombre', 'curso']
 
   }
 

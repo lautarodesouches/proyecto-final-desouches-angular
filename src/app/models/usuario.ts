@@ -1,4 +1,7 @@
-export interface Usuario{
-    usuario: String
-    contrasenia: String
+export interface Usuario {
+    id: string
+    usuario: string
+    admin: boolean
+    contrasenia: string
+    email: string
 }

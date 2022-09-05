@@ -3,10 +3,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { ModificarCursoComponent } from './components/modificar-curso/modificar-curso.component';
 import { NuevoCursoComponent } from './components/nuevo-curso/nuevo-curso.component';
-import { CursosService } from './services/cursos/cursos.service';
-import { Curso } from 'src/app/shared/interfaces/curso';
 import { map, Observable, Subscription } from 'rxjs';
 import { BorrarDialogComponent } from '../shared/components/borrar-dialog/borrar-dialog.component';
+import { CursoService } from '../core/services/curso.service';
+import { Curso } from '../models/curso';
 
 @Component({
   selector: 'app-cursos',
@@ -20,25 +20,25 @@ export class CursosComponent implements OnInit, OnDestroy {
   public columnas: string[] = ['comision', 'nombre', 'profesor', 'acciones']
   public dataSource: MatTableDataSource<any> = new MatTableDataSource()
   public cursoSubscripcion: Subscription
-  public curso$: Observable<any>
+  public cursos$: Observable<any>
 
   @ViewChild(MatTable) listaCursos!: MatTable<Curso>
 
   constructor(
 
     private dialog: MatDialog,
-    private alumnoServicio: CursosService
+    private cursoServicio: CursoService
 
   ) {
 
-    this.curso$ = this.alumnoServicio.obtenerObservableCursos()
+    this.cursos$ = this.cursoServicio.obtenerCursos()
 
-    this.cursoSubscripcion = this.curso$.pipe(
+    this.cursoSubscripcion = this.cursos$.pipe(
 
-      map((cursos: Curso[]) => cursos.filter((curso: any) => curso.id !== 1))
+      //map((cursos: Curso[]) => cursos.filter((curso: any) => curso.id !== '1'))
 
     ).subscribe(curso => {
-    
+
       this.dataSource.data = curso
       this.loading = false
 
@@ -69,7 +69,7 @@ export class CursosComponent implements OnInit, OnDestroy {
     })
   }
 
-  eliminar(comision: number) {
+  eliminar(comision: string) {
     const dialogRef = this.dialog.open(BorrarDialogComponent, {
       width: '20%'
     })

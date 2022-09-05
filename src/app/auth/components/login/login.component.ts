@@ -28,8 +28,11 @@ export class LoginComponent implements OnInit {
 
   login() {
     const usuario: Usuario = {
+      id: '',
       usuario: this.formulario.value.usuario,
-      contrasenia: this.formulario.value.contrasenia
+      contrasenia: this.formulario.value.contrasenia,
+      admin: this.formulario.value.usuario,
+      email: '',
     }
 
     this.auth.iniciarSesion(usuario)

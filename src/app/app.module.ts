@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http'
 
 import { RoutesModule } from './routes/routes.module';
 
@@ -26,7 +27,8 @@ import { AuthService } from './core/services/auth.service';
     BrowserAnimationsModule,
     RoutesModule,
     SharedModule,
-    CoreModule
+    CoreModule,
+    HttpClientModule
   ],
   providers: [
     AuthService

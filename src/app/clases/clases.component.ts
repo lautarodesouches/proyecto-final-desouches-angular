@@ -3,10 +3,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { ModificarClasesComponent } from './components/modificar-clases/modificar-clases.component';
 import { NuevaClaseComponent } from './components/nueva-clase/nueva-clasecomponent';
-import { ClasesService } from './services/clases/clases.service';
-import { Clase } from 'src/app/shared/interfaces/clase';
 import { map, Observable, Subscription } from 'rxjs';
 import { BorrarDialogComponent } from '../shared/components/borrar-dialog/borrar-dialog.component';
+import { Clase } from '../models/clase';
+import { ClaseService } from '../core/services/clase.service';
 
 @Component({
   selector: 'app-clases',
@@ -20,18 +20,18 @@ export class ClasesComponent implements OnInit, OnDestroy {
   public columnas: string[] = ['id', 'nombre', 'curso', 'acciones']
   public dataSource: MatTableDataSource<any> = new MatTableDataSource()
   public claseSubscripcion: Subscription
-  public clase$: Observable<any>
+  public clase$: Observable<Clase[]>
 
   @ViewChild(MatTable) listaClases!: MatTable<Clase>
 
   constructor(
 
     private dialog: MatDialog,
-    private clasesServicio: ClasesService
+    private clasesServicio: ClaseService
 
   ) {
 
-    this.clase$ = this.clasesServicio.obtenerObservableClases()
+    this.clase$ = this.clasesServicio.obtenerClases()
 
     this.claseSubscripcion = this.clase$.pipe(
 
@@ -69,7 +69,7 @@ export class ClasesComponent implements OnInit, OnDestroy {
     })
   }
 
-  eliminar(idAlumno: number) {
+  eliminar(idAlumno: string) {
     const dialogRef = this.dialog.open(BorrarDialogComponent, {
       width: '20%'
     })
