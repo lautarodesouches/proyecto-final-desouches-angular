@@ -22,12 +22,13 @@ export class ModificarCursoComponent implements OnInit {
   ) {
 
     this.formulario = fb.group({
+      id: new FormControl(data.id, [Validators.required]),
       comision: new FormControl(data.comision, [Validators.required]),
       nombre: new FormControl(data.nombre, [Validators.required]),
       profesor: new FormControl(data.profesor, [Validators.required]),
     })
 
-    this.formFields = ['comision', 'nombre', 'profesor']
+    this.formFields = ['id', 'comision', 'nombre', 'profesor']
 
   }
 

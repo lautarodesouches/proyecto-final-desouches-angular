@@ -6,7 +6,7 @@ import { NuevaClaseComponent } from './components/nueva-clase/nueva-clasecompone
 import { map, Observable, Subscription } from 'rxjs';
 import { BorrarDialogComponent } from '../shared/components/borrar-dialog/borrar-dialog.component';
 import { Clase } from '../models/clase';
-import { ClaseService } from '../core/services/clase.service';
+import { ClaseService } from './services/clase.service';
 
 @Component({
   selector: 'app-clases',

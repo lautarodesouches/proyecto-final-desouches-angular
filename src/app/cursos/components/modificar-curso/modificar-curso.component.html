@@ -3,7 +3,7 @@
 
     <form [formGroup]="formulario" class='row align-items-center justify-content-center'>
 
-        <mat-form-field *ngFor="let field of formFields" appearance="fill" class="col-4 my-4">
+        <mat-form-field *ngFor="let field of formFields" appearance="fill" class="col-6 my-4">
             <mat-label>{{field | titlecase}}</mat-label>
             <input formControlName="{{field}}" matInput>
             <mat-hint class='my-2 text-danger'

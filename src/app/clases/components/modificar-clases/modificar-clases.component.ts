@@ -27,7 +27,7 @@ export class ModificarClasesComponent implements OnInit {
       curso: new FormControl(data.curso, [Validators.required]),
     })
 
-    this.formFields = ['nombre', 'curso']
+    this.formFields = ['id', 'nombre', 'curso']
 
   }
 

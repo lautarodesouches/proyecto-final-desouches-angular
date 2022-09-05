@@ -5,8 +5,8 @@ import { ModificarCursoComponent } from './components/modificar-curso/modificar-
 import { NuevoCursoComponent } from './components/nuevo-curso/nuevo-curso.component';
 import { map, Observable, Subscription } from 'rxjs';
 import { BorrarDialogComponent } from '../shared/components/borrar-dialog/borrar-dialog.component';
-import { CursoService } from '../core/services/curso.service';
 import { Curso } from '../models/curso';
+import { CursoService } from './services/curso.service';
 
 @Component({
   selector: 'app-cursos',
@@ -60,6 +60,8 @@ export class CursosComponent implements OnInit, OnDestroy {
     })
 
     dialogRef.afterClosed().subscribe(resultado => {
+      console.log(resultado);
+      
       if (resultado) this.cursoServicio.modificarCurso(resultado)
     })
   }

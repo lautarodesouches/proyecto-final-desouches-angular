@@ -3,7 +3,7 @@ export interface Alumno {
     apellido: string
     email: string
     telefono: string
-    dn: number
+    dni: number
     pais: string
     activo: boolean
     id: string

@@ -6,7 +6,8 @@ import { NuevoAlumnoComponent } from './components/nuevo-alumno/nuevo-alumno.com
 import { map, Observable, Subscription } from 'rxjs';
 import { BorrarDialogComponent } from '../shared/components/borrar-dialog/borrar-dialog.component';
 import { Alumno } from '../models/alumno';
-import { AlumnoService } from '../core/services/alumno.service';
+import { AlumnoService } from './services/alumno.service';
+
 
 @Component({
   selector: 'app-alumnos',
