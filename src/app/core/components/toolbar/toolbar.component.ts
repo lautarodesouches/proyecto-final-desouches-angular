@@ -11,6 +11,7 @@ import { AuthService } from '../../services/auth.service';
 export class ToolbarComponent implements OnInit {
 
   @Input() title: string = ''
+  @Input() drawer: any
 
   constructor(
     private router: Router,

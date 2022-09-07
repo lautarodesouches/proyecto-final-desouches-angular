@@ -7,6 +7,7 @@ import { MatDialogModule } from '@angular/material/dialog'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
 import { MatSlideToggleModule } from '@angular/material/slide-toggle'
+import { MatSidenavModule } from '@angular/material/sidenav'
 
 @NgModule({
     imports: [
@@ -16,7 +17,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle'
         MatDialogModule,
         MatFormFieldModule,
         MatInputModule,
-        MatSlideToggleModule
+        MatSlideToggleModule,
+        MatSidenavModule
     ],
     exports: [
         MatTableModule,
@@ -25,7 +27,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle'
         MatDialogModule,
         MatFormFieldModule,
         MatInputModule,
-        MatSlideToggleModule
+        MatSlideToggleModule,
+        MatSidenavModule
     ]
 })
 

@@ -25,7 +25,7 @@ const routes: Routes = [
     },
     { path: 'page-not-found', component: PageNotFoundComponent },
     { path: '', redirectTo: 'auth', pathMatch: 'full' },
-    //{ path: '**', redirectTo: 'page-not-found', pathMatch: 'full' }
+    { path: '**', redirectTo: 'page-not-found', pathMatch: 'full' }
 ]
 
 @NgModule({
