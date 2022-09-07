@@ -37,8 +37,6 @@ export class LoginComponent implements OnInit {
     }
 
     this.auth.iniciarSesion(usuario)
-    
-    this.router.navigate(['alumnos'])
 
   }
 

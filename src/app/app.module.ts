@@ -11,6 +11,7 @@ import { TitleFontSizeDirective } from './shared/directives';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { AuthService } from './core/services/auth.service';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AuthService } from './core/services/auth.service';
     BrowserAnimationsModule,
     RoutesModule,
     SharedModule,
+    AuthModule,
     CoreModule,
     HttpClientModule
   ],

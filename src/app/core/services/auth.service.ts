@@ -4,6 +4,8 @@ import { Usuario } from 'src/app/models/usuario';
 import { Sesion } from '../../models/sesion';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import * as Toastify from 'toastify-js';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +18,8 @@ export class AuthService {
 
   constructor(
 
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
 
   ) {
 
@@ -60,8 +63,23 @@ export class AuthService {
 
         this.sesionSubject.next(sesion)
 
+        this.router.navigate(['alumnos'])
+
       }).catch(error => {
-        alert(error)
+
+        Toastify({
+          text: error,
+          duration: 3000,
+          style: {
+            background: "linear-gradient(to right, #e60000, #cc0000)",
+            color: 'white'
+          },
+          stopOnFocus: true,
+          close: true,
+          gravity: "top", // `top` or `bottom`
+          position: "right", // `left`, `center` or `right`
+        }).showToast();
+
       })
 
     })
