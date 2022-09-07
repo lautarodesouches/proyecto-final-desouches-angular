@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Usuario } from 'src/app/models/usuario';
 
@@ -18,7 +17,6 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-    private router: Router
   ) {
 
   }
@@ -32,7 +30,7 @@ export class LoginComponent implements OnInit {
       id: '',
       usuario: this.formulario.value.usuario,
       contrasenia: this.formulario.value.contrasenia,
-      admin: this.formulario.value.usuario,
+      admin: false,
       email: '',
     }
 

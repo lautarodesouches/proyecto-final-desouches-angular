@@ -44,7 +44,7 @@ export class AuthService {
 
           if (!usuariodb) rej('Usuario no existe')
 
-          if (usuariodb.contrasenia === usuario.contrasenia) res(usuario)
+          if (usuariodb.contrasenia === usuario.contrasenia) res(usuariodb)
 
           rej('Contraseña inválida')
 
