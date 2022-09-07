@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FooterComponent, NavBarComponent, PageNotFoundComponent, ToolbarComponent } from './components';
 import { SharedModule } from '../shared/shared.module';
+import { Title } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,9 @@ import { SharedModule } from '../shared/shared.module';
     NavBarComponent,
     PageNotFoundComponent,
     ToolbarComponent
+  ],
+  providers: [
+    [Title]
   ]
 })
 

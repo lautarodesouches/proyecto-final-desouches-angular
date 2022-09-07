@@ -5,7 +5,7 @@
         </button>
     </div>
     <div class="col-4 text-center">
-        <h2 class='mb-0' appTitleFontSize (click)="redirect('')">{{title}}</h2>
+        <h2 class='mb-0' appTitleFontSize (click)="redirect('')">{{title + ' - ' + pathTitle}}</h2>
     </div>
     <div class="col-4 text-end">
         <mat-icon fontIcon="logout" (click)="logout()"></mat-icon>
