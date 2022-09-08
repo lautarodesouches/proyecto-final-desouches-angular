@@ -5,9 +5,13 @@
         </button>
     </div>
     <div class="col-4 text-center">
-        <h2 class='mb-0' appTitleFontSize (click)="redirect('')">{{title + ' - ' + pathTitle}}</h2>
+        <a class='cursor-pointer text-dark text-decoration-none'>
+            <h2 class='mb-0' appTitleFontSize (click)="redirect('')">{{title + ' - ' + pathTitle}}</h2>
+        </a>
     </div>
     <div class="col-4 text-end">
-        <mat-icon fontIcon="logout" (click)="logout()"></mat-icon>
+        <a class='cursor-pointer'>
+            <mat-icon fontIcon="logout" (click)="logout()" ></mat-icon>
+        </a>
     </div>
 </header>

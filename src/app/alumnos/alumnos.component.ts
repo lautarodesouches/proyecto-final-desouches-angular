@@ -9,12 +9,12 @@ import { Alumno } from '../models/alumno';
 import { AlumnoService } from './services/alumno.service';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-alumnos',
   templateUrl: './alumnos.component.html',
   styleUrls: ['./alumnos.component.css']
 })
+
 export class AlumnosComponent implements OnInit, OnDestroy {
 
   public loading: boolean = true

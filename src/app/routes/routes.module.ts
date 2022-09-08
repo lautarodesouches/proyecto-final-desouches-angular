@@ -8,7 +8,7 @@ const routes: Routes = [
         path: 'auth',
         loadChildren: () => import('../auth/auth.module').then(m => m.AuthModule),
         data: {
-            title: 'Auth'
+            title: 'Autenticacion'
         }
     },
     {
@@ -35,9 +35,17 @@ const routes: Routes = [
             title: 'Cursos'
         }
     },
+    {
+        path: 'usuarios',
+        canActivate: [AuthGuard],
+        loadChildren: () => import('../usuarios/usuarios.module').then(m => m.UsuariosModule),
+        data: {
+            title: 'Usuarios'
+        }
+    },
     { path: 'page-not-found', component: PageNotFoundComponent, data: { title: 'Pagina no encontrada'} },
     { path: '', redirectTo: 'auth', pathMatch: 'full' },
-    { path: '**', redirectTo: 'page-not-found', pathMatch: 'full'}
+    //{ path: '**', redirectTo: 'page-not-found', pathMatch: 'full'}
 ]
 
 @NgModule({

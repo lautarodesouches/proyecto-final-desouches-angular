@@ -60,8 +60,6 @@ export class CursosComponent implements OnInit, OnDestroy {
     })
 
     dialogRef.afterClosed().subscribe(resultado => {
-      console.log(resultado);
-      
       if (resultado) this.cursoServicio.modificarCurso(resultado)
     })
   }

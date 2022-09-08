@@ -1,0 +1,21 @@
+<h2 mat-dialog-title class='h5 text-center mb-4'>Registrar Clase</h2>
+<div mat-dialog-content>
+
+    <form [formGroup]="formulario" class='row align-items-center justify-content-center'>
+
+        <mat-form-field *ngFor="let field of formFields" appearance="fill" class="col-4 my-4">
+            <mat-label>{{field | titlecase}}</mat-label>
+            <input formControlName="{{field}}" matInput>
+            <mat-hint class='my-2 text-danger'
+                *ngIf="formulario.get(field)?.touched && formulario.get(field)?.errors?.['required']">
+                *El campo es obligatorio
+            </mat-hint>
+        </mat-form-field>
+
+    </form>
+
+</div>
+<div mat-dialog-actions class='d-flex flex-wrap gap-3 align-items-center justify-content-center mt-4'>
+    <button mat-raised-button color="warn" (click)="cerrar()">Cerrar</button>
+    <button mat-raised-button color="primary" (click)="agregar()">Registrar</button>
+</div>

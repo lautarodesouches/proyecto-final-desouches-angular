@@ -22,9 +22,7 @@ export class NavBarComponent implements OnInit {
     private router: Router,
     private auth: AuthService
   ) {
-    this.auth.sesionSubject.subscribe((e) => {
-      console.log(e.usuario);
-      
+    this.auth.sesionSubject.subscribe((e) => {      
       this.usuarioEsAdmin = e.usuario?.admin || false
     })
   }
