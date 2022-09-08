@@ -7,6 +7,7 @@ import { map, Observable, Subscription } from 'rxjs';
 import { BorrarDialogComponent } from '../shared/components/borrar-dialog/borrar-dialog.component';
 import { Curso } from '../models/curso';
 import { CursoService } from './services/curso.service';
+import { AuthService } from '../core/services/auth.service';
 
 @Component({
   selector: 'app-cursos',
@@ -15,11 +16,13 @@ import { CursoService } from './services/curso.service';
 })
 export class CursosComponent implements OnInit, OnDestroy {
 
+  public esAdmin: boolean = false
   public loading: boolean = true
   public cursos: any = []
-  public columnas: string[] = ['comision', 'nombre', 'profesor', 'acciones']
+  public columnas: string[] = ['comision', 'nombre', 'profesor']
   public dataSource: MatTableDataSource<any> = new MatTableDataSource()
   public cursoSubscripcion: Subscription
+  public authSubscripcion: Subscription
   public cursos$: Observable<any>
 
   @ViewChild(MatTable) listaCursos!: MatTable<Curso>
@@ -27,9 +30,15 @@ export class CursosComponent implements OnInit, OnDestroy {
   constructor(
 
     private dialog: MatDialog,
-    private cursoServicio: CursoService
+    private cursoServicio: CursoService,
+    private authServicio: AuthService
 
   ) {
+
+    this.authSubscripcion = this.authServicio.obtenerSesion().subscribe(e=> {
+      this.esAdmin = e.usuario?.admin || false
+      this.esAdmin === true && this.columnas.push('acciones')
+    })
 
     this.cursos$ = this.cursoServicio.obtenerCursos()
 
@@ -51,6 +60,7 @@ export class CursosComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.cursoSubscripcion.unsubscribe()
+    this.authSubscripcion.unsubscribe()
   }
 
   editar(elemento: Curso) {

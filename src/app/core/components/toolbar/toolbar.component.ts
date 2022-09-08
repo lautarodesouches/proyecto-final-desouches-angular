@@ -12,6 +12,8 @@ import { filter } from 'rxjs/operators';
 
 export class ToolbarComponent implements OnInit {
 
+  public estaLogueado: boolean = false
+  public usuario: string = ''
   public pathTitle: string = ''
 
   @Input() title: string = ''
@@ -22,7 +24,12 @@ export class ToolbarComponent implements OnInit {
     private auth: AuthService,
     private activatedRoute: ActivatedRoute,
     private titleService: Title
-  ) { }
+  ) {
+    auth.obtenerSesion().subscribe(e=> {
+      this.estaLogueado = e.sesionActiva
+      this.usuario = e.usuario?.usuario || ''
+    })
+  }
 
   ngOnInit(): void {
 

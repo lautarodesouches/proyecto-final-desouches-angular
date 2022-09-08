@@ -28,7 +28,7 @@
             <td class='px-4' mat-cell *matCellDef="let element">{{element.profesor}}</td>
         </ng-container>
 
-        <ng-container matColumnDef="acciones">
+        <ng-container matColumnDef="acciones" *ngIf="esAdmin">
             <th class='px-4 text-center' mat-header-cell *matHeaderCellDef>Acciones</th>
             <td class='px-4' mat-cell *matCellDef="let element">
                 <button mat-icon-button (click)="editar(element)">

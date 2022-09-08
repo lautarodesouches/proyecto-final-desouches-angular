@@ -1,6 +1,6 @@
 <header class='w-100 row align-items-end'>
     <div class="col-4">
-        <button mat-icon-button type="button" mat-button (click)="drawer.toggle()">
+        <button *ngIf="estaLogueado" mat-icon-button type="button" mat-button (click)="drawer.toggle()">
             <mat-icon fontIcon="menu"></mat-icon>
         </button>
     </div>
@@ -9,8 +9,9 @@
             <h2 class='mb-0' appTitleFontSize (click)="redirect('')">{{title + ' - ' + pathTitle}}</h2>
         </a>
     </div>
-    <div class="col-4 text-end">
-        <a class='cursor-pointer'>
+    <div class="col-4">
+        <a *ngIf="estaLogueado" class='text-dark text-decoration-none cursor-pointer d-flex align-items-center justify-content-end gap-3'>
+            <h3 class='m-0'>Bienvenido {{usuario}}</h3>
             <mat-icon fontIcon="logout" (click)="logout()" ></mat-icon>
         </a>
     </div>

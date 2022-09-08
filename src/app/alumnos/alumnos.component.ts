@@ -8,6 +8,7 @@ import { BorrarDialogComponent } from '../shared/components/borrar-dialog/borrar
 import { Alumno } from '../models/alumno';
 import { AlumnoService } from './services/alumno.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../core/services/auth.service';
 
 @Component({
   selector: 'app-alumnos',
@@ -17,17 +18,20 @@ import { Router } from '@angular/router';
 
 export class AlumnosComponent implements OnInit, OnDestroy {
 
+  public esAdmin: boolean = false
   public loading: boolean = true
   public alumnos: any = []
   public columnas: string[] = ['nombreCompleto', 'email', 'telefono', 'dni', 'pais', 'activo', 'acciones']
   public dataSource: MatTableDataSource<any> = new MatTableDataSource()
   public alumnoSubscripcion: Subscription
+  public authSubscripcion: Subscription
   public alumno$: Observable<any>
 
   @ViewChild(MatTable) listaAlumnos!: MatTable<Alumno>
 
   constructor(
 
+    private authServicio: AuthService,
     private dialog: MatDialog,
     private alumnoServicio: AlumnoService,
     private router: Router
@@ -35,6 +39,10 @@ export class AlumnosComponent implements OnInit, OnDestroy {
   ) {
 
     this.alumno$ = this.alumnoServicio.obtenerAlumnos()
+
+    this.authSubscripcion = this.authServicio.obtenerSesion().subscribe(e=> {
+      this.esAdmin = e.usuario?.admin || false
+    })
 
     this.alumnoSubscripcion = this.alumno$.pipe(
 
@@ -54,6 +62,7 @@ export class AlumnosComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.alumnoSubscripcion.unsubscribe()
+    this.authSubscripcion.unsubscribe()
   }
 
   editar(elemento: Alumno) {
