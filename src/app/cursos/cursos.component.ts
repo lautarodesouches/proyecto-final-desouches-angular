@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { ModificarCursoComponent } from './components/modificar-curso/modificar-curso.component';
 import { NuevoCursoComponent } from './components/nuevo-curso/nuevo-curso.component';
-import { map, Observable, Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { BorrarDialogComponent } from '../shared/components/borrar-dialog/borrar-dialog.component';
 import { Curso } from '../models/curso';
 import { CursoService } from './services/curso.service';

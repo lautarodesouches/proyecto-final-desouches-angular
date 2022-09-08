@@ -22,7 +22,7 @@ export class ModificarAlumnoComponent implements OnInit {
 
   ) {
 
-    this.formulario = fb.group({
+    this.formulario = this.fb.group({
       id: new FormControl(data.id, [Validators.required]),
       nombre: new FormControl(data.nombre, [Validators.required]),
       apellido: new FormControl(data.apellido, [Validators.required]),
