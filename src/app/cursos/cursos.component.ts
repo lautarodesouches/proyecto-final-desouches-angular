@@ -7,7 +7,9 @@ import { Observable, Subscription } from 'rxjs';
 import { BorrarDialogComponent } from '../shared/components/borrar-dialog/borrar-dialog.component';
 import { Curso } from '../models/curso';
 import { CursoService } from './services/curso.service';
-import { AuthService } from '../core/services/auth.service';
+import { AppState } from '../state/app.state';
+import { Store } from '@ngrx/store';
+import { selectorObtenerSesion } from '../state/selectors/auth.selector';
 
 @Component({
   selector: 'app-cursos',
@@ -22,34 +24,34 @@ export class CursosComponent implements OnInit, OnDestroy {
   public columnas: string[] = ['comision', 'nombre', 'profesor']
   public dataSource: MatTableDataSource<any> = new MatTableDataSource()
   public cursoSubscripcion: Subscription
-  public authSubscripcion: Subscription
   public cursos$: Observable<any>
 
   @ViewChild(MatTable) listaCursos!: MatTable<Curso>
 
   constructor(
 
+    private store: Store<AppState>,
     private dialog: MatDialog,
     private cursoServicio: CursoService,
-    private authServicio: AuthService
 
   ) {
 
-    this.authSubscripcion = this.authServicio.obtenerSesion().subscribe(e=> {
+    this.store.select(selectorObtenerSesion).subscribe(e => {
       this.esAdmin = e.usuario?.admin || false
       this.esAdmin === true && this.columnas.push('acciones')
     })
 
     this.cursos$ = this.cursoServicio.obtenerCursos()
 
-    this.cursoSubscripcion = this.cursos$.pipe(
-
-      //map((cursos: Curso[]) => cursos.filter((curso: any) => curso.id !== '1'))
-
-    ).subscribe(curso => {
+    this.cursoSubscripcion = this.cursos$.subscribe(curso => {
 
       this.dataSource.data = curso
-      this.loading = false
+      
+      if (curso.length > 0) {
+        this.loading = false
+      } else {
+        this.loading = true
+      }
 
     })
 
@@ -60,7 +62,6 @@ export class CursosComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.cursoSubscripcion.unsubscribe()
-    this.authSubscripcion.unsubscribe()
   }
 
   editar(elemento: Curso) {

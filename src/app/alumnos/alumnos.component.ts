@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from '../state/app.state';
 import { obtenerSesion } from '../state/actions/auth.action';
-import { selectorAuth, selectorObtenerSesion } from '../state/selectors/auth.selector';
+import { selectorObtenerSesion } from '../state/selectors/auth.selector';
 
 @Component({
   selector: 'app-alumnos',
@@ -53,7 +53,12 @@ export class AlumnosComponent implements OnInit, OnDestroy {
     ).subscribe(alumno => {
 
       this.dataSource.data = alumno
-      this.loading = false
+
+      if (alumno.length > 0) {
+        this.loading = false
+      } else {
+        this.loading = true
+      }
 
     })
 

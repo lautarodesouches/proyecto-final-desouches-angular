@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource, MatTable } from '@angular/material/table';
-import { Router } from '@angular/router';
 import { Subscription, Observable, map } from 'rxjs';
 import { Usuario } from '../models/usuario';
 import { BorrarDialogComponent } from '../shared/components';
@@ -28,7 +27,6 @@ export class UsuariosComponent implements OnInit, OnDestroy {
 
     private dialog: MatDialog,
     private usuarioServicio: UsuarioService,
-    private router: Router
 
   ) {
 

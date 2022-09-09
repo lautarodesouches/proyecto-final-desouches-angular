@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from '../services/auth.service';
-import * as Toastify from 'toastify-js';
+import { AppState } from '../../state/app.state';
+import { Store } from '@ngrx/store';
+import { selectorObtenerSesion } from '../../state/selectors/auth.selector';
 
 @Injectable({
   providedIn: 'root'
@@ -10,35 +11,22 @@ import * as Toastify from 'toastify-js';
 
 export class AuthGuard implements CanActivate {
 
+  private sesionActiva: boolean = false
+
   constructor(
-
-    private auth: AuthService,
+    private store: Store<AppState>,
     private router: Router
-    
   ) {
-
+    this.store.select(selectorObtenerSesion).subscribe(e => {
+      this.sesionActiva = e.sesionActiva
+    })
   }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (!this.auth.estaLoggeado()) {
-
-      Toastify({
-        text: 'No estas logueado',
-        duration: 3000,
-        style: {
-          background: "linear-gradient(to right, #e60000, #cc0000)",
-          color: 'white'
-        },
-        stopOnFocus: true,
-        close: true,
-        gravity: "top", // `top` or `bottom`
-        position: "right", // `left`, `center` or `right`
-      }).showToast();
-
+    if (!this.sesionActiva) {
       return this.router.navigate(['auth']).then(() => false)
-
     }
     return true;
   }

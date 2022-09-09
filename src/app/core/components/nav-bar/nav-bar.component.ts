@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import { AppState } from '../../../state/app.state';
+import { Store } from '@ngrx/store';
+import { selectorObtenerSesion } from '../../../state/selectors/auth.selector';
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,7 +12,7 @@ import { AuthService } from '../../services/auth.service';
 
 export class NavBarComponent implements OnInit {
 
-  public usuarioEsAdmin: boolean = false
+  public esAdmin: boolean = false
 
   navItems: string[] = [
     'alumnos',
@@ -20,10 +22,10 @@ export class NavBarComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private auth: AuthService
+    private store: Store<AppState>
   ) {
-    this.auth.sesionSubject.subscribe((e) => {      
-      this.usuarioEsAdmin = e.usuario?.admin || false
+    this.store.select(selectorObtenerSesion).subscribe(e => {
+      this.esAdmin = e.usuario?.admin || false
     })
   }
 

@@ -7,7 +7,7 @@
                     {{page | titlecase}}</li>
             </a>
         </div>
-        <div *ngIf="usuarioEsAdmin" class='h5'>
+        <div *ngIf="esAdmin" class='h5'>
             <a class='text-white text-decoration-none cursor-pointer'>
                 <li (click)="redirect('usuarios')" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent"
                     aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">

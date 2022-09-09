@@ -4,7 +4,6 @@ import { Usuario } from 'src/app/models/usuario';
 import { Sesion } from '../../models/sesion';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import * as Toastify from 'toastify-js';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/state/app.state';
@@ -81,20 +80,7 @@ export class AuthService {
         }
 
         this.store.dispatch(modificarSesion({ sesion }))
-
-        Toastify({
-          text: error,
-          duration: 3000,
-          style: {
-            background: "linear-gradient(to right, #e60000, #cc0000)",
-            color: 'white'
-          },
-          stopOnFocus: true,
-          close: true,
-          gravity: "top", // `top` or `bottom`
-          position: "right", // `left`, `center` or `right`
-        }).showToast();
-
+        
       })
 
     })

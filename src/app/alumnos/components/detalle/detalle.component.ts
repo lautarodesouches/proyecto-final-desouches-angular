@@ -24,15 +24,17 @@ export class DetalleComponent implements OnInit {
   ngOnInit(): void {
 
     this.route.params.subscribe((params: any) => {
-      
+
       this.alumnoServicio.detalleAlumno(params['id'])
-      
+
       this.alumnoServicio.obtenerAlumnos().subscribe((data) => {
-        this.alumno = data
+        if (data.length === 1) {
+          this.alumno = data
+        }
       })
-      
+
     })
-    
+
   }
 
   irAtras() {

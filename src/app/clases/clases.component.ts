@@ -7,7 +7,9 @@ import { map, Observable, Subscription } from 'rxjs';
 import { BorrarDialogComponent } from '../shared/components/borrar-dialog/borrar-dialog.component';
 import { Clase } from '../models/clase';
 import { ClaseService } from './services/clase.service';
-import { AuthService } from '../core/services/auth.service';
+import { AppState } from '../state/app.state';
+import { Store } from '@ngrx/store';
+import { selectorObtenerSesion } from '../state/selectors/auth.selector';
 
 @Component({
   selector: 'app-clases',
@@ -22,20 +24,19 @@ export class ClasesComponent implements OnInit, OnDestroy {
   public columnas: string[] = ['id', 'nombre', 'curso']
   public dataSource: MatTableDataSource<any> = new MatTableDataSource()
   public claseSubscripcion: Subscription
-  public authSubscripcion: Subscription
   public clase$: Observable<Clase[]>
 
   @ViewChild(MatTable) listaClases!: MatTable<Clase>
 
   constructor(
 
+    private store: Store<AppState>,
     private dialog: MatDialog,
     private clasesServicio: ClaseService,
-    private authServicio: AuthService
 
   ) {
 
-    this.authSubscripcion = this.authServicio.obtenerSesion().subscribe(e=> {
+    this.store.select(selectorObtenerSesion).subscribe(e => {
       this.esAdmin = e.usuario?.admin || false
       this.esAdmin === true && this.columnas.push('acciones')
     })
@@ -49,7 +50,12 @@ export class ClasesComponent implements OnInit, OnDestroy {
     ).subscribe(clase => {
 
       this.dataSource.data = clase
-      this.loading = false
+
+      if (clase.length > 0) {
+        this.loading = false
+      } else {
+        this.loading = true
+      }
 
     })
 
@@ -60,7 +66,6 @@ export class ClasesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.claseSubscripcion.unsubscribe()
-    this.authSubscripcion.unsubscribe()
   }
 
   editar(elemento: Clase) {
