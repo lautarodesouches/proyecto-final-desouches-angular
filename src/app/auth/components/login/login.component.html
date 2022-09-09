@@ -5,9 +5,13 @@
         <mat-label>Usuario</mat-label>
         <input formControlName="usuario" matInput>
 
-        <mat-hint class='my-2 text-danger'
+        <mat-hint class='m-0 text-danger'
             *ngIf="formulario.get('usuario')?.touched && formulario.get('usuario')?.errors?.['required']">
             *El campo es obligatorio
+        </mat-hint>
+
+        <mat-hint class='m-0 text-danger' *ngIf="error.includes('Usuario')">
+            *{{error}}
         </mat-hint>
 
     </mat-form-field>
@@ -17,13 +21,17 @@
         <mat-label>Contraseña</mat-label>
         <input formControlName="contrasenia" matInput type="password">
 
-        <mat-hint class='my-2 text-danger'
+        <mat-hint class='m-0 text-danger'
             *ngIf="formulario.get('contrasenia')?.touched && formulario.get('contrasenia')?.errors?.['required']">
             *El campo es obligatorio
         </mat-hint>
 
+        <mat-hint class='m-0 text-danger' *ngIf="error.includes('Contraseña')">
+            *{{error}}
+        </mat-hint>
+
     </mat-form-field>
 
-    <button class='mt-3' mat-raised-button color="primary">Ingresar</button>
+    <button class='mt-2' mat-raised-button color="primary">Ingresar</button>
 
 </form>

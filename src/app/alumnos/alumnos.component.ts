@@ -8,7 +8,10 @@ import { BorrarDialogComponent } from '../shared/components/borrar-dialog/borrar
 import { Alumno } from '../models/alumno';
 import { AlumnoService } from './services/alumno.service';
 import { Router } from '@angular/router';
-import { AuthService } from '../core/services/auth.service';
+import { Store } from '@ngrx/store';
+import { AppState } from '../state/app.state';
+import { obtenerSesion } from '../state/actions/auth.action';
+import { selectorAuth, selectorObtenerSesion } from '../state/selectors/auth.selector';
 
 @Component({
   selector: 'app-alumnos',
@@ -24,25 +27,24 @@ export class AlumnosComponent implements OnInit, OnDestroy {
   public columnas: string[] = ['nombreCompleto', 'email', 'telefono', 'dni', 'pais', 'activo', 'acciones']
   public dataSource: MatTableDataSource<any> = new MatTableDataSource()
   public alumnoSubscripcion: Subscription
-  public authSubscripcion: Subscription
   public alumno$: Observable<any>
 
   @ViewChild(MatTable) listaAlumnos!: MatTable<Alumno>
 
   constructor(
 
-    private authServicio: AuthService,
+    private store: Store<AppState>,
     private dialog: MatDialog,
     private alumnoServicio: AlumnoService,
     private router: Router
 
   ) {
 
-    this.alumno$ = this.alumnoServicio.obtenerAlumnos()
-
-    this.authSubscripcion = this.authServicio.obtenerSesion().subscribe(e=> {
+    this.store.select(selectorObtenerSesion).subscribe(e => {
       this.esAdmin = e.usuario?.admin || false
     })
+
+    this.alumno$ = this.alumnoServicio.obtenerAlumnos()
 
     this.alumnoSubscripcion = this.alumno$.pipe(
 
@@ -58,11 +60,11 @@ export class AlumnosComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.store.dispatch(obtenerSesion())
   }
 
   ngOnDestroy(): void {
     this.alumnoSubscripcion.unsubscribe()
-    this.authSubscripcion.unsubscribe()
   }
 
   editar(elemento: Alumno) {

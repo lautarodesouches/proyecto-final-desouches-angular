@@ -12,6 +12,8 @@ import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { AuthService } from './core/services/auth.service';
 import { AuthModule } from './auth/auth.module';
+import { StoreModule } from '@ngrx/store';
+import { ROOT_REDUCERS } from './state/app.state';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { AuthModule } from './auth/auth.module';
     SharedModule,
     AuthModule,
     CoreModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot(ROOT_REDUCERS)
   ],
   providers: [
     AuthService

@@ -6,6 +6,9 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import * as Toastify from 'toastify-js';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/state/app.state';
+import { modificarSesion } from 'src/app/state/actions/auth.action';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +22,8 @@ export class AuthService {
   constructor(
 
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private store: Store<AppState>
 
   ) {
 
@@ -58,14 +62,25 @@ export class AuthService {
 
         const sesion: Sesion = {
           sesionActiva: true,
+          error: '',
           usuario: res
         }
 
         this.sesionSubject.next(sesion)
 
+        this.store.dispatch(modificarSesion({ sesion }))
+
         this.router.navigate(['alumnos'])
 
       }).catch(error => {
+
+        const sesion: Sesion = {
+          sesionActiva: false,
+          error,
+          usuario: undefined
+        }
+
+        this.store.dispatch(modificarSesion({ sesion }))
 
         Toastify({
           text: error,
