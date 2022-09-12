@@ -14,6 +14,7 @@ import { selectorObtenerSesion } from '../../../state/selectors/auth.selector';
 export class LoginComponent implements OnInit {
 
   error: string = ''
+  loading: boolean = false
 
   formulario: FormGroup = new FormGroup({
     usuario: new FormControl('test', [Validators.required]),
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit {
   ) {
     this.store.select(selectorObtenerSesion).subscribe(e => {
       this.error = e.error || ''
+      this.loading = e.loading
     })
   }
 

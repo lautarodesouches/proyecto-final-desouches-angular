@@ -14,6 +14,8 @@ import { AuthService } from './core/services/auth.service';
 import { AuthModule } from './auth/auth.module';
 import { StoreModule } from '@ngrx/store';
 import { ROOT_REDUCERS } from './state/app.state';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { ROOT_REDUCERS } from './state/app.state';
     AuthModule,
     CoreModule,
     HttpClientModule,
-    StoreModule.forRoot(ROOT_REDUCERS)
+    StoreModule.forRoot(ROOT_REDUCERS),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production, name: 'Prueba NgRx' })
   ],
   providers: [
     AuthService

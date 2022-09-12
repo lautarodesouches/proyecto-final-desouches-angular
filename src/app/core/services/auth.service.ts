@@ -28,7 +28,8 @@ export class AuthService {
 
     const sesion: Sesion = {
       sesionActiva: false,
-      error: ''
+      error: '',
+      loading: false
     }
 
     this.sesionSubject = new BehaviorSubject(sesion)
@@ -36,6 +37,13 @@ export class AuthService {
   }
 
   iniciarSesion(usuario: Usuario) {
+
+    const sesion: Sesion = {
+      sesionActiva: false,
+      loading: true
+    }
+
+    this.store.dispatch(modificarSesion({ sesion }))
 
     this.http.get<Usuario[]>(this.api + 'usuarios').pipe(
 
@@ -62,7 +70,8 @@ export class AuthService {
         const sesion: Sesion = {
           sesionActiva: true,
           error: '',
-          usuario: res
+          usuario: res,
+          loading: false
         }
 
         this.sesionSubject.next(sesion)
@@ -76,11 +85,12 @@ export class AuthService {
         const sesion: Sesion = {
           sesionActiva: false,
           error,
-          usuario: undefined
+          usuario: undefined,
+          loading: false
         }
 
         this.store.dispatch(modificarSesion({ sesion }))
-        
+
       })
 
     })
@@ -88,10 +98,12 @@ export class AuthService {
 
   cerrarSesion() {
     const sesion: Sesion = {
-      sesionActiva: false
+      sesionActiva: false,
+      loading: false
     }
 
     this.sesionSubject.next(sesion)
+    this.store.dispatch(modificarSesion({ sesion }))
   }
 
   obtenerSesion() {

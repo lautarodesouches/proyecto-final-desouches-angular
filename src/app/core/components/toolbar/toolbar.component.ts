@@ -58,7 +58,9 @@ export class ToolbarComponent implements OnInit {
   }
 
   logout() {
-    this.drawer.toggle()
+    if (this.drawer._animationState === "open") {
+      this.drawer.toggle()
+    }
     this.auth.cerrarSesion()
     this.router.navigate(['auth'])
   }

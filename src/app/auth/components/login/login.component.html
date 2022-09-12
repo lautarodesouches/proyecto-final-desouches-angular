@@ -1,4 +1,4 @@
-<form [formGroup]="formulario" (ngSubmit)="login()" class='py-3 px-1 rounded d-flex flex-column'>
+<form *ngIf="!loading" [formGroup]="formulario" (ngSubmit)="login()" class='py-3 px-1 rounded d-flex flex-column'>
 
     <mat-form-field appearance="fill" class="my-1">
 
@@ -35,3 +35,6 @@
     <button class='mt-2' mat-raised-button color="primary">Ingresar</button>
 
 </form>
+<div *ngIf="loading" class='text-center'>
+    <h2>Cargando...</h2>
+</div>

@@ -6,7 +6,8 @@ const estadoInicial: AuthState = {
     sesion: {
         sesionActiva: false,
         error: '',
-        usuario: undefined
+        usuario: undefined,
+        loading: false
     }
 }
 
