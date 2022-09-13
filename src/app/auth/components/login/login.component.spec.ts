@@ -9,8 +9,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login.component';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { of } from 'rxjs';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/state/app.state';
 
 describe('LoginComponent', () => {
 
@@ -19,6 +20,7 @@ describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let router: Router
+  let store: Store<AppState>
 
   beforeEach(async () => {
 
@@ -50,7 +52,7 @@ describe('LoginComponent', () => {
     }).compileComponents();
 
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['get'])
-    service = new AuthService(httpClientSpy as any, router)
+    service = new AuthService(httpClientSpy as any, router, store)
 
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;

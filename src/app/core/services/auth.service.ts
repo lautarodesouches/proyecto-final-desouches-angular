@@ -15,8 +15,13 @@ import { modificarSesion } from 'src/app/state/actions/auth.action';
 
 export class AuthService {
 
-  sesionSubject!: BehaviorSubject<Sesion>
+  public sesionSubject!: BehaviorSubject<Sesion>
   private api: string = environment.api
+  private sesion: Sesion = {
+    sesionActiva: false,
+    error: '',
+    loading: false
+  }
 
   constructor(
 
@@ -26,24 +31,27 @@ export class AuthService {
 
   ) {
 
-    const sesion: Sesion = {
-      sesionActiva: false,
-      error: '',
-      loading: false
-    }
+    const localSesion = localStorage.getItem('sesion')
 
-    this.sesionSubject = new BehaviorSubject(sesion)
+    if (localSesion) this.sesion = JSON.parse(localSesion)
 
+    this.sesionSubject = new BehaviorSubject(this.sesion)
+
+  }
+
+  guardarSesion() {
+    localStorage.setItem('sesion', JSON.stringify(this.sesion))
+    this.store.dispatch(modificarSesion({ sesion: this.sesion }))
   }
 
   iniciarSesion(usuario: Usuario) {
 
-    const sesion: Sesion = {
+    this.sesion = {
       sesionActiva: false,
       loading: true
     }
 
-    this.store.dispatch(modificarSesion({ sesion }))
+    this.store.dispatch(modificarSesion({ sesion: this.sesion }))
 
     this.http.get<Usuario[]>(this.api + 'usuarios').pipe(
 
@@ -67,29 +75,29 @@ export class AuthService {
 
       promise.then((res: any) => {
 
-        const sesion: Sesion = {
+        this.sesion = {
           sesionActiva: true,
           error: '',
           usuario: res,
           loading: false
         }
 
-        this.sesionSubject.next(sesion)
+        this.sesionSubject.next(this.sesion)
 
-        this.store.dispatch(modificarSesion({ sesion }))
+        this.guardarSesion()
 
         this.router.navigate(['alumnos'])
 
       }).catch(error => {
 
-        const sesion: Sesion = {
+        this.sesion = {
           sesionActiva: false,
           error,
           usuario: undefined,
           loading: false
         }
 
-        this.store.dispatch(modificarSesion({ sesion }))
+        this.guardarSesion()
 
       })
 
@@ -97,13 +105,14 @@ export class AuthService {
   }
 
   cerrarSesion() {
-    const sesion: Sesion = {
+    this.sesion = {
       sesionActiva: false,
       loading: false
     }
 
-    this.sesionSubject.next(sesion)
-    this.store.dispatch(modificarSesion({ sesion }))
+    this.sesionSubject.next(this.sesion)
+
+    this.guardarSesion()
   }
 
   obtenerSesion() {

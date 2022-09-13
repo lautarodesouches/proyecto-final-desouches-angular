@@ -1,5 +1,6 @@
 <div class='text-center'>
     <div *ngIf="alumno.length === 1">
+        <h2>{{alumno.nombre}}</h2>
         {{alumno | json}}
     </div>
     <button (click)="irAtras()" mat-raised-button color="primary" class='mt-4'>Ir atrás</button>

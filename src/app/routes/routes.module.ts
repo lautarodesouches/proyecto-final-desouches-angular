@@ -44,7 +44,7 @@ const routes: Routes = [
         }
     },
     { path: 'page-not-found', component: PageNotFoundComponent, data: { title: 'Pagina no encontrada'} },
-    { path: '', redirectTo: 'auth', pathMatch: 'full' },
+    { path: '', redirectTo: 'alumnos', pathMatch: 'full' },
     //{ path: '**', redirectTo: 'page-not-found', pathMatch: 'full'}
 ]
 
