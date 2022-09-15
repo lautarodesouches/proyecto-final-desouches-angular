@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Alumno } from 'src/app/models/alumno';
 import { AlumnoService } from '../../services/alumno.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { AlumnoService } from '../../services/alumno.service';
 })
 export class DetalleComponent implements OnInit {
 
-  public alumno!: any
+  public alumno!: Alumno
   public cols: string[] = ['nombre', 'apellido', 'email', 'telefono', 'dni', 'pais', 'activo', 'id']
 
   constructor(
@@ -19,6 +20,7 @@ export class DetalleComponent implements OnInit {
     private route: ActivatedRoute
 
   ) {
+    
   }
 
   ngOnInit(): void {
@@ -29,7 +31,7 @@ export class DetalleComponent implements OnInit {
 
       this.alumnoServicio.obtenerAlumnos().subscribe((data) => {
         if (data.length === 1) {
-          this.alumno = data
+          this.alumno = data[0]
         }
       })
 
