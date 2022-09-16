@@ -1,19 +1,19 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { AlumnosComponent } from './alumnos.component';
-import { AlumnoService } from './services/alumno.service';
-import { RouterTestingModule } from '@angular/router/testing';
-import { MatInputModule } from '@angular/material/input';
-import { MatDialog, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatButtonModule } from '@angular/material/button';
-import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AlumnosComponent } from './alumnos.component'
+import { AlumnoService } from './services/alumno.service'
+import { RouterTestingModule } from '@angular/router/testing'
+import { MatInputModule } from '@angular/material/input'
+import { MatDialog, MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { MatButtonModule } from '@angular/material/button'
+import { FormsModule } from '@angular/forms'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 describe('AlumnosComponent', () => {
 
-  let component: AlumnosComponent;
-  let fixture: ComponentFixture<AlumnosComponent>;
+  let component: AlumnosComponent
+  let fixture: ComponentFixture<AlumnosComponent>
 
   beforeEach(async () => {
 
@@ -43,14 +43,14 @@ describe('AlumnosComponent', () => {
 
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AlumnosComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    fixture = TestBed.createComponent(AlumnosComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
 
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    expect(component).toBeTruthy()
+  })
 
-});
+})

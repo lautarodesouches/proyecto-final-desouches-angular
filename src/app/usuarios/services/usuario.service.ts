@@ -1,21 +1,26 @@
-import { Injectable } from '@angular/core';
-import { Usuario } from 'src/app/models/usuario';
-import { BehaviorSubject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { Injectable } from '@angular/core'
+import { Usuario } from 'src/app/models/usuario'
+import { BehaviorSubject } from 'rxjs'
+import { HttpClient } from '@angular/common/http'
+import { environment } from 'src/environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class UsuarioService {
 
   private usuarioSubject!: BehaviorSubject<Usuario[]>
   private api: string = environment.api + 'usuarios/'
 
   constructor(
+
     private http: HttpClient
+
   ) {
+
     this.usuarioSubject = new BehaviorSubject<Usuario[]>([])
+    
   }
 
   private consultarUsuarios() {

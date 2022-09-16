@@ -1,17 +1,18 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { MatTableDataSource, MatTable } from '@angular/material/table';
-import { Subscription, Observable, map } from 'rxjs';
-import { Usuario } from '../models/usuario';
-import { BorrarDialogComponent } from '../shared/components';
-import { ModificarUsuarioComponent, NuevoUsuarioComponent } from './components';
-import { UsuarioService } from './services/usuario.service';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core'
+import { MatDialog } from '@angular/material/dialog'
+import { MatTableDataSource, MatTable } from '@angular/material/table'
+import { Subscription, Observable, map } from 'rxjs'
+import { Usuario } from '../models/usuario'
+import { BorrarDialogComponent } from '../shared/components'
+import { ModificarUsuarioComponent, NuevoUsuarioComponent } from './components'
+import { UsuarioService } from './services/usuario.service'
 
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
   styleUrls: ['./usuarios.component.css']
 })
+
 export class UsuariosComponent implements OnInit, OnDestroy {
 
   public loading: boolean = true

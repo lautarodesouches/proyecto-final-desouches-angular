@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
-import { AuthService } from 'src/app/core/services/auth.service';
-import { Usuario } from 'src/app/models/usuario';
-import { AppState } from '../../../state/app.state';
-import { selectorObtenerSesion } from '../../../state/selectors/auth.selector';
+import { Component, OnInit } from '@angular/core'
+import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { Store } from '@ngrx/store'
+import { AuthService } from 'src/app/core/services/auth.service'
+import { Usuario } from 'src/app/models/usuario'
+import { AppState } from '../../../state/app.state'
+import { selectorObtenerSesion } from '../../../state/selectors/auth.selector'
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
 
   error: string = ''
@@ -22,13 +23,17 @@ export class LoginComponent implements OnInit {
   })
 
   constructor(
+
     private auth: AuthService,
     private store: Store<AppState>
+
   ) {
+
     this.store.select(selectorObtenerSesion).subscribe(e => {
       this.error = e.error || ''
       this.loading = e.loading
     })
+    
   }
 
   ngOnInit(): void {

@@ -1,5 +1,5 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import { Alumno } from 'src/app/models/alumno';
+import { Pipe, PipeTransform } from '@angular/core'
+import { Alumno } from 'src/app/models/alumno'
 
 @Pipe({
   name: 'nombreApellidoAlumno'
@@ -8,7 +8,7 @@ import { Alumno } from 'src/app/models/alumno';
 export class NombreApellidoAlumnoPipe implements PipeTransform {
 
   transform(value: Alumno, ...args: unknown[]): unknown {
-    return `${value.nombre} ${value.apellido}`;
+    return `${value.nombre} ${value.apellido}`
   }
 
 }

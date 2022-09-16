@@ -1,22 +1,22 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule } from '@angular/core'
+import { BrowserModule } from '@angular/platform-browser'
+import { AppComponent } from './app.component'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { HttpClientModule } from '@angular/common/http'
 
-import { RoutesModule } from './routes/routes.module';
+import { RoutesModule } from './routes/routes.module'
 
-import { TitleFontSizeDirective } from './shared/directives';
+import { TitleFontSizeDirective } from './shared/directives'
 
-import { SharedModule } from './shared/shared.module';
-import { CoreModule } from './core/core.module';
-import { AuthService } from './core/services/auth.service';
-import { AuthModule } from './auth/auth.module';
-import { StoreModule } from '@ngrx/store';
-import { ROOT_REDUCERS } from './state/app.state';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
-import { EffectsModule } from '@ngrx/effects';
+import { SharedModule } from './shared/shared.module'
+import { CoreModule } from './core/core.module'
+import { AuthService } from './core/services/auth.service'
+import { AuthModule } from './auth/auth.module'
+import { StoreModule } from '@ngrx/store'
+import { ROOT_REDUCERS } from './state/app.state'
+import { StoreDevtoolsModule } from '@ngrx/store-devtools'
+import { environment } from '../environments/environment'
+import { EffectsModule } from '@ngrx/effects'
 
 @NgModule({
   declarations: [

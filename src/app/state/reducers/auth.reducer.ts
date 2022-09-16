@@ -1,6 +1,6 @@
-import { createReducer, on } from '@ngrx/store';
-import { AuthState } from 'src/app/models/auth.state';
-import { modificarSesion, obtenerSesion } from '../actions/auth.action';
+import { createReducer, on } from '@ngrx/store'
+import { AuthState } from 'src/app/models/auth.state'
+import { modificarSesion, obtenerSesion } from '../actions/auth.action'
 
 const sesionPorDefecto = {
     sesionActiva: false,

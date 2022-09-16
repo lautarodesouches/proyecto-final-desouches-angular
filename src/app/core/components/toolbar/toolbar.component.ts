@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-import { filter } from 'rxjs/operators';
+import { Component, Input, OnInit } from '@angular/core'
+import { Title } from '@angular/platform-browser'
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router'
+import { AuthService } from '../../services/auth.service'
+import { filter } from 'rxjs/operators'
 
 @Component({
   selector: 'app-toolbar',
@@ -25,7 +25,7 @@ export class ToolbarComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private titleService: Title
   ) {
-    auth.obtenerSesion().subscribe(e=> {
+    auth.obtenerSesion().subscribe(e => {
       this.estaLogueado = e.sesionActiva
       this.usuario = e.usuario?.usuario || ''
     })
@@ -47,10 +47,9 @@ export class ToolbarComponent implements OnInit {
 
   getChild(activatedRoute: ActivatedRoute): any {
     if (activatedRoute.firstChild) {
-      return this.getChild(activatedRoute.firstChild);
-    } else {
-      return activatedRoute;
+      return this.getChild(activatedRoute.firstChild)
     }
+    return activatedRoute
   }
 
   redirect(route: string) {

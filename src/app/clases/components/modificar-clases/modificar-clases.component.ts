@@ -1,13 +1,14 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Clase } from 'src/app/models/clase';
+import { Component, Inject, OnInit } from '@angular/core'
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { Clase } from 'src/app/models/clase'
 
 @Component({
   selector: 'app-modificar-clases',
   templateUrl: './modificar-clases.component.html',
   styleUrls: ['./modificar-clases.component.css']
 })
+
 export class ModificarClasesComponent implements OnInit {
 
   formulario: FormGroup
@@ -21,7 +22,7 @@ export class ModificarClasesComponent implements OnInit {
 
   ) {
 
-    this.formulario = fb.group({
+    this.formulario = this.fb.group({
       id: new FormControl(data.id, [Validators.required]),
       nombre: new FormControl(data.nombre, [Validators.required]),
       curso: new FormControl(data.curso, [Validators.required]),

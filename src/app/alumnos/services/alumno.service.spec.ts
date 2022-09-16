@@ -1,7 +1,7 @@
-import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { AlumnoService } from './alumno.service';
-import { of } from 'rxjs';
+import { TestBed } from '@angular/core/testing'
+import { HttpClientTestingModule } from '@angular/common/http/testing'
+import { AlumnoService } from './alumno.service'
+import { of } from 'rxjs'
 
 describe('AlumnoService', () => {
 
@@ -13,22 +13,22 @@ describe('AlumnoService', () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [AlumnoService]
-    }).compileComponents();
+    }).compileComponents()
 
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule
       ]
-    });
+    })
 
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['get'])
     service = new AlumnoService(httpClientSpy as any)
-    
-  });
+
+  })
 
   it('Crear servicio', () => {
-    expect(service).toBeTruthy();
-  });
+    expect(service).toBeTruthy()
+  })
 
   it('Retornar lista alumnos', (done: DoneFn) => {
 
@@ -72,6 +72,6 @@ describe('AlumnoService', () => {
       done()
     })
 
-  });
+  })
 
-});
+})

@@ -1,7 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Alumno } from 'src/app/models/alumno';
+import { Component, Inject, OnInit } from '@angular/core'
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { Alumno } from 'src/app/models/alumno'
 
 
 @Component({
@@ -9,6 +9,7 @@ import { Alumno } from 'src/app/models/alumno';
   templateUrl: './modificar-alumno.component.html',
   styleUrls: ['./modificar-alumno.component.css']
 })
+
 export class ModificarAlumnoComponent implements OnInit {
 
   formulario: FormGroup

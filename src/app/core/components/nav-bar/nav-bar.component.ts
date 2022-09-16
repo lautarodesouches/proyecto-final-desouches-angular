@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AppState } from '../../../state/app.state';
-import { Store } from '@ngrx/store';
-import { selectorObtenerSesion } from '../../../state/selectors/auth.selector';
+import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
+import { AppState } from '../../../state/app.state'
+import { Store } from '@ngrx/store'
+import { selectorObtenerSesion } from '../../../state/selectors/auth.selector'
 
 @Component({
   selector: 'app-nav-bar',

@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { Alumno } from 'src/app/models/alumno';
-import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http'
+import { Injectable } from '@angular/core'
+import { BehaviorSubject } from 'rxjs'
+import { Alumno } from 'src/app/models/alumno'
+import { environment } from 'src/environments/environment'
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +14,13 @@ export class AlumnoService {
   private api: string = environment.api + 'alumnos/'
 
   constructor(
+
     private http: HttpClient
+
   ) {
+
     this.alumnoSubject = new BehaviorSubject<Alumno[]>([])
+    
   }
 
   private consultarAlumnos() {

@@ -1,13 +1,14 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AlumnoService } from '../../services/alumno.service';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { ReactiveFormsModule } from '@angular/forms'
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { AlumnoService } from '../../services/alumno.service'
 
-import { ModificarAlumnoComponent } from './modificar-alumno.component';
+import { ModificarAlumnoComponent } from './modificar-alumno.component'
 
 describe('ModificarAlumnoComponent', () => {
-  let component: ModificarAlumnoComponent;
-  let fixture: ComponentFixture<ModificarAlumnoComponent>;
+
+  let component: ModificarAlumnoComponent
+  let fixture: ComponentFixture<ModificarAlumnoComponent>
 
   beforeEach(async () => {
 
@@ -20,16 +21,16 @@ describe('ModificarAlumnoComponent', () => {
       ],
       declarations: [ModificarAlumnoComponent],
 
-    }).compileComponents();
+    }).compileComponents()
 
-    fixture = TestBed.createComponent(ModificarAlumnoComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    fixture = TestBed.createComponent(ModificarAlumnoComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
 
-  });
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    expect(component).toBeTruthy()
+  })
 
-});
+})

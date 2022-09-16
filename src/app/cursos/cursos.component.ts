@@ -1,24 +1,25 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { ModificarCursoComponent } from './components/modificar-curso/modificar-curso.component';
-import { NuevoCursoComponent } from './components/nuevo-curso/nuevo-curso.component';
-import { Observable, Subscription } from 'rxjs';
-import { BorrarDialogComponent } from '../shared/components/borrar-dialog/borrar-dialog.component';
-import { Curso } from '../models/curso';
-import { CursoService } from './services/curso.service';
-import { AppState } from '../state/app.state';
-import { Store } from '@ngrx/store';
-import { selectorObtenerSesion } from '../state/selectors/auth.selector';
-import { CursoState } from './state/cursos.reducer';
-import { selectCargandoState, selectCursosCargadosState } from './state/cursos.selectors';
-import { cargarCursos, cursosCargados } from './state/cursos.actions';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
+import { MatDialog } from '@angular/material/dialog'
+import { MatTable, MatTableDataSource } from '@angular/material/table'
+import { ModificarCursoComponent } from './components/modificar-curso/modificar-curso.component'
+import { NuevoCursoComponent } from './components/nuevo-curso/nuevo-curso.component'
+import { Observable } from 'rxjs'
+import { BorrarDialogComponent } from '../shared/components/borrar-dialog/borrar-dialog.component'
+import { Curso } from '../models/curso'
+import { CursoService } from './services/curso.service'
+import { AppState } from '../state/app.state'
+import { Store } from '@ngrx/store'
+import { selectorObtenerSesion } from '../state/selectors/auth.selector'
+import { CursoState } from './state/cursos.reducer'
+import { selectCursosCargadosState } from './state/cursos.selectors'
+import { cargarCursos } from './state/cursos.actions'
 
 @Component({
   selector: 'app-cursos',
   templateUrl: './cursos.component.html',
   styleUrls: ['./cursos.component.css']
 })
+
 export class CursosComponent implements OnInit, OnDestroy {
 
   public esAdmin!: boolean

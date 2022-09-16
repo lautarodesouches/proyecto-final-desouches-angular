@@ -1,17 +1,17 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { ModificarAlumnoComponent } from './components/modificar-alumno/modificar-alumno.component';
-import { NuevoAlumnoComponent } from './components/nuevo-alumno/nuevo-alumno.component';
-import { map, Observable, Subscription } from 'rxjs';
-import { BorrarDialogComponent } from '../shared/components/borrar-dialog/borrar-dialog.component';
-import { Alumno } from '../models/alumno';
-import { AlumnoService } from './services/alumno.service';
-import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { AppState } from '../state/app.state';
-import { obtenerSesion } from '../state/actions/auth.action';
-import { selectorObtenerSesion } from '../state/selectors/auth.selector';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
+import { MatDialog } from '@angular/material/dialog'
+import { MatTable, MatTableDataSource } from '@angular/material/table'
+import { ModificarAlumnoComponent } from './components/modificar-alumno/modificar-alumno.component'
+import { NuevoAlumnoComponent } from './components/nuevo-alumno/nuevo-alumno.component'
+import { map, Observable, Subscription } from 'rxjs'
+import { BorrarDialogComponent } from '../shared/components/borrar-dialog/borrar-dialog.component'
+import { Alumno } from '../models/alumno'
+import { AlumnoService } from './services/alumno.service'
+import { Router } from '@angular/router'
+import { Store } from '@ngrx/store'
+import { AppState } from '../state/app.state'
+import { obtenerSesion } from '../state/actions/auth.action'
+import { selectorObtenerSesion } from '../state/selectors/auth.selector'
 
 @Component({
   selector: 'app-alumnos',

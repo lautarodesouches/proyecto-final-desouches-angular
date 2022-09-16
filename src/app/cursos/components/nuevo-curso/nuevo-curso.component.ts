@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core'
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { MatDialogRef } from '@angular/material/dialog'
 
 @Component({
   selector: 'app-nuevo-curso',
   templateUrl: './nuevo-curso.component.html',
   styleUrls: ['./nuevo-curso.component.css']
 })
+
 export class NuevoCursoComponent implements OnInit {
 
   formulario: FormGroup
@@ -19,7 +20,7 @@ export class NuevoCursoComponent implements OnInit {
 
   ) {
 
-    this.formulario = fb.group({
+    this.formulario = this.fb.group({
       id: new FormControl('', []),
       comision: new FormControl('', [Validators.required]),
       nombre: new FormControl('', [Validators.required]),

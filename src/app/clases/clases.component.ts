@@ -1,21 +1,22 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { ModificarClasesComponent } from './components/modificar-clases/modificar-clases.component';
-import { NuevaClaseComponent } from './components/nueva-clase/nueva-clasecomponent';
-import { map, Observable, Subscription } from 'rxjs';
-import { BorrarDialogComponent } from '../shared/components/borrar-dialog/borrar-dialog.component';
-import { Clase } from '../models/clase';
-import { ClaseService } from './services/clase.service';
-import { AppState } from '../state/app.state';
-import { Store } from '@ngrx/store';
-import { selectorObtenerSesion } from '../state/selectors/auth.selector';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core'
+import { MatDialog } from '@angular/material/dialog'
+import { MatTable, MatTableDataSource } from '@angular/material/table'
+import { ModificarClasesComponent } from './components/modificar-clases/modificar-clases.component'
+import { NuevaClaseComponent } from './components/nueva-clase/nueva-clasecomponent'
+import { map, Observable, Subscription } from 'rxjs'
+import { BorrarDialogComponent } from '../shared/components/borrar-dialog/borrar-dialog.component'
+import { Clase } from '../models/clase'
+import { ClaseService } from './services/clase.service'
+import { AppState } from '../state/app.state'
+import { Store } from '@ngrx/store'
+import { selectorObtenerSesion } from '../state/selectors/auth.selector'
 
 @Component({
   selector: 'app-clases',
   templateUrl: './clases.component.html',
   styleUrls: ['./clases.component.css']
 })
+
 export class ClasesComponent implements OnInit, OnDestroy {
 
   public esAdmin: boolean = false

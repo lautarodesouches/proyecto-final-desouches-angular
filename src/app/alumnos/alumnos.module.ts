@@ -5,8 +5,8 @@ import { AlumnosComponent } from './alumnos.component';
 
 import { ModificarAlumnoComponent, NuevoAlumnoComponent, DetalleComponent } from './components';
 
-import { SharedModule } from '../shared/shared.module';
-import { AlumnosRoutingModule } from './routes/alumno-routing.module';
+import { SharedModule } from '../shared/shared.module'
+import { AlumnosRoutingModule } from './routes/alumno-routing.module'
 
 @NgModule({
   declarations: [
