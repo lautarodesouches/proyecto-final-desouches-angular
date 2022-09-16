@@ -12,7 +12,6 @@ export class CursosEffects {
     ofType(cargarCursos),
     mergeMap(() => this.cursosService.obtenerCursos().pipe(
       map((c: Curso[]) => {
-        console.log(c)
         return cursosCargados({ cursos: c })
       })
     ))
