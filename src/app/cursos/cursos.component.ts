@@ -10,6 +10,9 @@ import { CursoService } from './services/curso.service';
 import { AppState } from '../state/app.state';
 import { Store } from '@ngrx/store';
 import { selectorObtenerSesion } from '../state/selectors/auth.selector';
+import { CursoState } from './state/cursos.reducer';
+import { selectCargandoState, selectCursosCargadosState } from './state/cursos.selectors';
+import { cargarCursos, cursosCargados } from './state/cursos.actions';
 
 @Component({
   selector: 'app-cursos',
@@ -18,18 +21,17 @@ import { selectorObtenerSesion } from '../state/selectors/auth.selector';
 })
 export class CursosComponent implements OnInit, OnDestroy {
 
-  public esAdmin: boolean = false
-  public loading: boolean = true
-  public cursos: any = []
+  public esAdmin!: boolean
+  public cargando$!: Observable<boolean>
+  public cursos$!: Observable<Curso[] | undefined>
   public columnas: string[] = ['comision', 'nombre', 'profesor']
   public dataSource: MatTableDataSource<any> = new MatTableDataSource()
-  public cursoSubscripcion: Subscription
-  public cursos$: Observable<any>
 
   @ViewChild(MatTable) listaCursos!: MatTable<Curso>
 
   constructor(
 
+    private featureStore: Store<CursoState>,
     private store: Store<AppState>,
     private dialog: MatDialog,
     private cursoServicio: CursoService,
@@ -41,19 +43,10 @@ export class CursosComponent implements OnInit, OnDestroy {
       this.esAdmin === true && this.columnas.push('acciones')
     })
 
-    this.cursos$ = this.cursoServicio.obtenerCursos()
+    this.featureStore.dispatch(cargarCursos())
 
-    this.cursoSubscripcion = this.cursos$.subscribe(curso => {
-
-      this.dataSource.data = curso
-      
-      if (curso.length > 0) {
-        this.loading = false
-      } else {
-        this.loading = true
-      }
-
-    })
+    this.cursos$ = this.featureStore.select(selectCursosCargadosState)
+    this.cursos$.subscribe(cursos => this.dataSource.data = cursos || [])
 
   }
 
@@ -61,7 +54,6 @@ export class CursosComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.cursoSubscripcion.unsubscribe()
   }
 
   editar(elemento: Curso) {

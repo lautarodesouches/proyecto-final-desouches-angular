@@ -1,0 +1,26 @@
+import { Action, createReducer, on } from '@ngrx/store';
+import { Curso } from 'src/app/models/curso';
+import * as CursosActions from './cursos.actions';
+
+export const cursosFeatureKey = 'cursos';
+
+export interface CursoState {
+  cargando: boolean;
+  cursos?: Curso[];
+}
+
+export const initialState: CursoState = {
+  cargando: false
+};
+
+export const reducer = createReducer(
+  initialState,
+  on(CursosActions.cargarCursos, (state) => {
+    console.log('cargarCursos')
+    return { ...state, cargando: true }
+  }),
+  on(CursosActions.cursosCargados, (state, { cursos }) => {
+    console.log('cursosCargados')
+    return { ...state, cargando: false, cursos: cursos };
+  })
+);

@@ -51,8 +51,6 @@ export class AuthService {
       loading: true
     }
 
-    this.store.dispatch(modificarSesion({ sesion: this.sesion }))
-
     this.http.get<Usuario[]>(this.api + 'usuarios').pipe(
 
       map((usuarios: Usuario[]) => {
