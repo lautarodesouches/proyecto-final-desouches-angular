@@ -20,12 +20,13 @@ export class NuevoUsuarioComponent implements OnInit {
   ) {
 
     this.formulario = this.fb.group({
-      id: new FormControl('', []),
-      clase: new FormControl('', [Validators.required]),
-      curso: new FormControl('', [Validators.required]),
+      usuario: new FormControl('', [Validators.required]),
+      contrasenia: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required]),
+      admin: new FormControl('', [Validators.required])
     })
 
-    this.formFields = ['id', 'clase', 'curso']
+    this.formFields = ['usuario', 'contrasenia', 'email']
 
   }
 
@@ -35,7 +36,7 @@ export class NuevoUsuarioComponent implements OnInit {
   cerrar() {
     this.dialogRef.close()
   }
-  
+
   agregar() {
     if (this.formulario.valid) this.dialogRef.close(this.formulario.value)
   }

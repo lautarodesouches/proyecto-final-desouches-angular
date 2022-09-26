@@ -20,12 +20,11 @@ export class NuevaClaseComponent implements OnInit {
   ) {
 
     this.formulario = this.fb.group({
-      id: new FormControl('', []),
-      clase: new FormControl('', [Validators.required]),
+      nombre: new FormControl('', [Validators.required]),
       curso: new FormControl('', [Validators.required]),
     })
 
-    this.formFields = ['id', 'clase', 'curso']
+    this.formFields = ['nombre', 'curso']
 
   }
 
